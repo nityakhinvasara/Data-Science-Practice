@@ -16,16 +16,18 @@ and student marks.
 
 | Step | Open this | When |
 |---|---|---|
-| 1 | `0-setup/SETUP.md` | Once, before Day 1 (about 20 minutes) |
-| 2 | `DAILY-PLAN.md` | Every day: it tells you exactly what to do |
-| 3 | The folder the plan names (e.g. `2-numpy/`) | Every day |
-| 4 | `my-mistakes.md` | Every day, last 5 minutes |
+| 1 | `0-setup/SETUP.md` | Once, before Day 1 (about 10 minutes) |
+| 2 | Double-click `start-jupyter.command` | Every day, to open Jupyter in this folder |
+| 3 | `DAILY-PLAN.md` | Every day: it tells you exactly what to do |
+| 4 | The folder the plan names (e.g. `2-numpy/`) | Every day |
+| 5 | `my-mistakes.md` | Every day, last 5 minutes |
 
 ## Folder map
 
 ```
 Data-Science-Practice/
 ├── START-HERE.md          ← you are here
+├── start-jupyter.command  ← double-click to open Jupyter here
 ├── DAILY-PLAN.md          ← what to do each day (tick the boxes)
 ├── my-mistakes.md         ← write down what tripped you up
 ├── RESOURCES.md           ← more exercise sets like this one, for later
@@ -52,7 +54,8 @@ Data-Science-Practice/
 | `exercises-with-hints.md` | All questions with hints, no answers | Reading on your phone |
 | `exercises-with-answers.md` | All questions with answers | Only after you've tried |
 
-Tip: to read a `.md` file nicely in VS Code, open it and press **Cmd+Shift+V** (preview).
+Tip: Jupyter shows `.md` files as plain text. To read them nicely formatted, open them on your GitHub page
+(https://github.com/nityakhinvasara/Data-Science-Practice), which also works on your phone.
 
 ## How one day works (1 hour)
 
@@ -68,10 +71,10 @@ Tip: to read a `.md` file nicely in VS Code, open it and press **Cmd+Shift+V** (
 2. **Stuck for 5 minutes?** Type `hint(n)` in a cell (n = the exercise number).
 3. **Stuck for 10 more minutes?** Type `answer(n)`. Read it, understand it, then **close it and type it
    yourself from memory**. Never copy-paste.
-4. **No AI code-writing while practising.** Turn off AI autocomplete in VS Code. You can ask ChatGPT
+4. **No AI code-writing while practising.** Turn off any AI autocomplete. You can ask ChatGPT
    or Claude to *explain* a concept or an error message, but not to solve the exercise. (We
    talked about why: you need to be able to judge code, and that only comes from writing it.)
 5. **Don't skip days to "catch up".** Missed a day? Just do the next unticked day. Busy day?
    Do a **15-minute minimum**: 3 exercises. That keeps the habit alive.
-6. **Run cells top to bottom.** If something weird happens, click **Restart** at the top of the notebook,
+6. **Run cells top to bottom.** If something weird happens, click **Kernel → Restart**,
    then run the first cell again.

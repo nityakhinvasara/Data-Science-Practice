@@ -17,7 +17,7 @@ Find the first unticked day and do it. Tick it with an `x`: `- [x]`.
 
 ---
 
-## Day 0: setup (any free evening, ~20 min)
+## Day 0: setup (any free evening, ~10 min)
 - [ ] Follow `0-setup/SETUP.md` until the check says **ALL GOOD**
 
 ## Week 1: Python warm-up + NumPy basics
@@ -86,7 +86,7 @@ Find the first unticked day and do it. Tick it with an `x`: `- [x]`.
 Behind or overflowing? Use the review day to finish, and skip steps 3–4.
 
 ## Want to redo a whole set from scratch?
-In VS Code's terminal (inside this folder), run, for example:
+In Terminal (or Jupyter's **New → Terminal**), inside this folder, run, for example:
 ```bash
 .venv/bin/python tools/build.py --fresh numpy
 ```

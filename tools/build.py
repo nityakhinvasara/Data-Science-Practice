@@ -57,7 +57,7 @@ def notebook(lesson, qa):
         cells.append(md_cell(heading(n, it["q"], STARS[lv])))
         cells.append(code_cell())
     return {"cells": cells, "metadata": {
-        "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
+        "kernelspec": {"display_name": "Python (Data Science Practice)", "language": "python", "name": "ds-practice"},
         "language_info": {"name": "python"}}, "nbformat": 4, "nbformat_minor": 5}
 
 
