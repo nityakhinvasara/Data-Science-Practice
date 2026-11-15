@@ -1,0 +1,943 @@
+result_id,meet,date,pool_length_m,swimmer_id,event,stroke,distance_m,time_sec,status
+1,District Winter Meet,2024-01-20,25,S001,50 Back,Backstroke,50,32.36,OK
+2,District Winter Meet,2024-01-20,25,S002,100 Free,Freestyle,100,71.77,OK
+3,District Winter Meet,2024-01-20,25,S002,50 Free,Freestyle,50,32.52,OK
+4,District Winter Meet,2024-01-20,25,S002,50 Fly,Butterfly,50,35.93,OK
+5,District Winter Meet,2024-01-20,25,S003,50 Fly,Butterfly,50,30.43,OK
+6,District Winter Meet,2024-01-20,25,S003,50 Free,Freestyle,50,26.96,OK
+7,District Winter Meet,2024-01-20,25,S003,100 Free,Freestyle,100,61.61,OK
+8,District Winter Meet,2024-01-20,25,S004,50 Fly,Butterfly,50,36.33,OK
+9,District Winter Meet,2024-01-20,25,S005,100 Free,Freestyle,100,69.05,OK
+10,District Winter Meet,2024-01-20,25,S005,100 Back,Backstroke,100,78.44,OK
+11,District Winter Meet,2024-01-20,25,S006,100 Back,Backstroke,100,85.76,OK
+12,District Winter Meet,2024-01-20,25,S006,200 Free,Freestyle,200,162.42,OK
+13,District Winter Meet,2024-01-20,25,S007,50 Breast,Breaststroke,50,48.05,OK
+14,District Winter Meet,2024-01-20,25,S007,100 Back,Backstroke,100,96.51,OK
+15,District Winter Meet,2024-01-20,25,S008,200 Free,Freestyle,200,183.0,OK
+16,District Winter Meet,2024-01-20,25,S008,100 Back,Backstroke,100,96.05,OK
+17,District Winter Meet,2024-01-20,25,S008,50 Free,Freestyle,50,37.7,OK
+18,District Winter Meet,2024-01-20,25,S009,100 Back,Backstroke,100,98.06,OK
+19,District Winter Meet,2024-01-20,25,S010,100 Back,Backstroke,100,100.76,OK
+20,District Winter Meet,2024-01-20,25,S011,100 Back,Backstroke,100,64.23,OK
+21,District Winter Meet,2024-01-20,25,S011,200 Free,Freestyle,200,,DQ
+22,District Winter Meet,2024-01-20,25,S012,50 Back,Backstroke,50,42.49,OK
+23,District Winter Meet,2024-01-20,25,S012,100 Free,Freestyle,100,80.0,OK
+24,District Winter Meet,2024-01-20,25,S013,50 Breast,Breaststroke,50,42.81,OK
+25,District Winter Meet,2024-01-20,25,S013,200 Free,Freestyle,200,156.24,OK
+26,District Winter Meet,2024-01-20,25,S013,50 Back,Backstroke,50,38.46,OK
+27,District Winter Meet,2024-01-20,25,S014,50 Free,Freestyle,50,29.4,OK
+28,District Winter Meet,2024-01-20,25,S015,200 IM,Individual Medley,200,157.05,OK
+29,District Winter Meet,2024-01-20,25,S015,50 Fly,Butterfly,50,33.22,OK
+30,District Winter Meet,2024-01-20,25,S015,100 Free,Freestyle,100,63.72,OK
+31,District Winter Meet,2024-01-20,25,S016,200 IM,Individual Medley,200,174.85,OK
+32,District Winter Meet,2024-01-20,25,S017,200 Free,Freestyle,200,172.54,OK
+33,District Winter Meet,2024-01-20,25,S018,200 IM,Individual Medley,200,163.01,OK
+34,District Winter Meet,2024-01-20,25,S018,50 Free, freestyle ,50,31.23,OK
+35,District Winter Meet,2024-01-20,25,S019,100 Free,Freestyle,100,64.86,OK
+36,District Winter Meet,2024-01-20,25,S020,50 Back,Backstroke,50,33.12,OK
+37,District Winter Meet,2024-01-20,25,S021,50 Fly,Butterfly,50,35.77,OK
+38,District Winter Meet,2024-01-20,25,S021,100 Back,Backstroke,100,80.9,OK
+39,District Winter Meet,2024-01-20,25,S021,50 Breast,Breaststroke,50,,DQ
+40,District Winter Meet,2024-01-20,25,S022,100 Back,Backstroke,100,88.5,OK
+41,District Winter Meet,2024-01-20,25,S022,100 Free,Freestyle,100,76.07,OK
+42,District Winter Meet,2024-01-20,25,S023,200 Free,Freestyle,200,169.07,OK
+43,District Winter Meet,2024-01-20,25,S023,200 IM,Individual Medley,200,189.14,OK
+44,District Winter Meet,2024-01-20,25,S023,50 Fly,Butterfly,50,38.64,OK
+45,District Winter Meet,2024-01-20,25,S024,100 Breast,Breaststroke,100,90.71,OK
+46,District Winter Meet,2024-01-20,25,S024,50 Free,Freestyle,50,32.41,OK
+47,District Winter Meet,2024-01-20,25,S024,50 Fly,Butterfly,50,36.7,OK
+48,District Winter Meet,2024-01-20,25,S025,50 Fly,Butterfly,50,42.64,OK
+49,District Winter Meet,2024-01-20,25,S026,50 Free,Freestyle,50,28.96,OK
+50,District Winter Meet,2024-01-20,25,S026,200 IM,Individual Medley,200,,DQ
+51,District Winter Meet,2024-01-20,25,S026,50 Breast,Breaststroke,50,38.32,OK
+52,District Winter Meet,2024-01-20,25,S027,100 Breast,Breaststroke,100,97.54,OK
+53,District Winter Meet,2024-01-20,25,S027,50 Back,Backstroke,50,39.01,OK
+54,District Winter Meet,2024-01-20,25,S028,200 Free,Freestyle,200,162.17,OK
+55,District Winter Meet,2024-01-20,25,S029,100 Free,Freestyle,100,79.03,OK
+56,District Winter Meet,2024-01-20,25,S030,100 Breast,Breaststroke,100,88.79,OK
+57,District Winter Meet,2024-01-20,25,S031,50 Free,Freestyle,50,28.09,OK
+58,District Winter Meet,2024-01-20,25,S031,100 Free,Freestyle,100,61.31,OK
+59,District Winter Meet,2024-01-20,25,S032,50 Free,Freestyle,50,32.25,OK
+60,District Winter Meet,2024-01-20,25,S032,100 Breast,Breaststroke,100,96.21,OK
+61,District Winter Meet,2024-01-20,25,S033,50 Fly,Butterfly,50,32.38,OK
+62,District Winter Meet,2024-01-20,25,S033,50 Free,Freestyle,50,28.46,OK
+63,District Winter Meet,2024-01-20,25,S033,100 Free,Freestyle,100,62.33,OK
+64,District Winter Meet,2024-01-20,25,S034,200 IM,Individual Medley,200,192.28,OK
+65,District Winter Meet,2024-01-20,25,S035,50 Free,Freestyle,50,35.49,OK
+66,District Winter Meet,2024-01-20,25,S035,200 IM,Individual Medley,200,193.83,OK
+67,District Winter Meet,2024-01-20,25,S036,200 Free,Freestyle,200,188.89,OK
+68,District Winter Meet,2024-01-20,25,S036,100 Breast,Breaststroke,100,113.08,OK
+69,District Winter Meet,2024-01-20,25,S037,200 IM,Individual Medley,200,218.83,OK
+70,District Winter Meet,2024-01-20,25,S037,50 Free,Freestyle,50,36.08,OK
+71,District Winter Meet,2024-01-20,25,S037,100 Breast,Breaststroke,100,107.92,OK
+72,District Winter Meet,2024-01-20,25,S038,100 Free,Freestyle,100,69.85,OK
+73,District Winter Meet,2024-01-20,25,S038,100 Back,Backstroke,100,82.13,OK
+74,District Winter Meet,2024-01-20,25,S039,50 Back,Backstroke,50,41.02,OK
+75,District Winter Meet,2024-01-20,25,S039,200 IM,Individual Medley,200,181.28,OK
+76,District Winter Meet,2024-01-20,25,S040,100 Breast,Breaststroke,100,97.61,OK
+77,District Winter Meet,2024-01-20,25,S040,200 Free,Freestyle,200,170.25,OK
+78,District Winter Meet,2024-01-20,25,S040,50 Free,Freestyle,50,34.57,OK
+79,District Winter Meet,2024-01-20,25,S041,100 Free,Freestyle,100,69.61,OK
+80,District Winter Meet,2024-01-20,25,S041,50 Back,Backstroke,50,38.67,OK
+81,District Winter Meet,2024-01-20,25,S041,50 Fly,Butterfly,50,38.2,OK
+82,District Winter Meet,2024-01-20,25,S042,100 Back,Backstroke,100,76.74,OK
+83,District Winter Meet,2024-01-20,25,S043,100 Breast,Breaststroke,100,104.36,OK
+84,District Winter Meet,2024-01-20,25,S044,200 IM,Individual Medley,200,172.96,OK
+85,District Winter Meet,2024-01-20,25,S044,200 Free,Freestyle,200,156.3,OK
+86,District Winter Meet,2024-01-20,25,S045,200 IM,Individual Medley,200,210.75,OK
+87,District Winter Meet,2024-01-20,25,S045,50 Back,Backstroke,50,44.65,OK
+88,District Winter Meet,2024-01-20,25,S045,50 Breast,Breaststroke,50,50.44,OK
+89,District Winter Meet,2024-01-20,25,S046,200 Free,Freestyle,200,166.0,OK
+90,District Winter Meet,2024-01-20,25,S046,50 Fly,Butterfly,50,40.73,OK
+91,District Winter Meet,2024-01-20,25,S047,50 Fly,Butterfly,50,40.83,OK
+92,District Winter Meet,2024-01-20,25,S047,50 Back,Backstroke,50,40.85,OK
+93,District Winter Meet,2024-01-20,25,S048,100 Free,Freestyle,100,82.57,OK
+94,District Winter Meet,2024-01-20,25,S049,100 Breast,Breaststroke,100,108.56,OK
+95,District Winter Meet,2024-01-20,25,S049,200 IM,Individual Medley,200,207.34,OK
+96,District Winter Meet,2024-01-20,25,S049,100 Free,Freestyle,100,90.9,OK
+97,District Winter Meet,2024-01-20,25,S050,50 Back,Backstroke,50,37.76,OK
+98,District Winter Meet,2024-01-20,25,S051,50 Free,Freestyle,50,29.5,OK
+99,District Winter Meet,2024-01-20,25,S052,200 IM,Individual Medley,200,191.31,OK
+100,District Winter Meet,2024-01-20,25,S053,100 Free,Freestyle,100,80.47,OK
+101,District Winter Meet,2024-01-20,25,S053,100 Back,Backstroke,100,93.55,OK
+102,District Winter Meet,2024-01-20,25,S054,200 IM,Individual Medley,200,214.19,OK
+103,District Winter Meet,2024-01-20,25,S055,200 IM,Individual Medley,200,179.92,OK
+104,District Winter Meet,2024-01-20,25,S055,50 Free,Freestyle,50,32.83,OK
+105,District Winter Meet,2024-01-20,25,S055,100 Free,Freestyle,100,71.74,OK
+106,District Winter Meet,2024-01-20,25,S056,200 Free,Freestyle,200,164.47,OK
+107,District Winter Meet,2024-01-20,25,S057,200 Free,Freestyle,200,149.75,OK
+108,District Winter Meet,2024-01-20,25,S058,50 Back,Backstroke,50,34.21,OK
+109,District Winter Meet,2024-01-20,25,S059,50 free,Backstroke,100,72.46,OK
+110,District Winter Meet,2024-01-20,25,S059,50 Fly,Butterfly,50,33.77,OK
+111,District Winter Meet,2024-01-20,25,S059,200 Free,Freestyle,200,145.75,OK
+112,District Winter Meet,2024-01-20,25,S060,50 Breast,Breaststroke,50,35.0,OK
+113,District Winter Meet,2024-01-20,25,S060,200 IM,Individual Medley,200,144.56,OK
+114,Pune Open,2024-03-16,50,S001,100 Breast,Breaststroke,100,73.45,OK
+115,Pune Open,2024-03-16,50,S001,50 Breast,Breaststroke,50,35.64,OK
+116,Pune Open,2024-03-16,50,S002,100 Breast,Breaststroke,100,87.2,OK
+117,Pune Open,2024-03-16,50,S003,200 Free,Freestyle,200,128.96,OK
+118,Pune Open,2024-03-16,50,S003,100 Breast,Breaststroke,100,76.11,OK
+119,Pune Open,2024-03-16,50,S003,100 Back,Backstroke,100,64.69,OK
+120,Pune Open,2024-03-16,50,S004,200 IM,Individual Medley,200,171.3,OK
+121,Pune Open,2024-03-16,50,S004,100 Free,Freestyle,100,69.36,OK
+122,Pune Open,2024-03-16,50,S005,50 Fly,Butterfly,50,32.39,OK
+123,Pune Open,2024-03-16,50,S005,100 Breast,Breaststroke,100,80.2,OK
+124,Pune Open,2024-03-16,50,S005,100 Back,Backstroke,100,75.31,OK
+125,Pune Open,2024-03-16,50,S006,200 IM,Individual Medley,200,181.26,OK
+126,Pune Open,2024-03-16,50,S006,100 Back,Backstroke,100,84.78,OK
+127,Pune Open,2024-03-16,50,S006,100 Free,Freestyle,100,75.64,OK
+128,Pune Open,2024-03-16,50,S007,100 Free,Freestyle,100,82.47,OK
+129,Pune Open,2024-03-16,50,S007,200 IM,Individual Medley,200,197.67,OK
+130,Pune Open,2024-03-16,50,S007,200 Free,Freestyle,200,168.15,OK
+131,Pune Open,2024-03-16,50,S008,100 Breast,Breaststroke,100,100.85,OK
+132,Pune Open,2024-03-16,50,S008,100 Free,Freestyle,100,83.03,OK
+133,Pune Open,2024-03-16,50,S008,100 Back,Backstroke,100,96.28,OK
+134,Pune Open,2024-03-16,50,S009,100 Breast,Breaststroke,100,107.74,OK
+135,Pune Open,2024-03-16,50,S010,50 Free,Freestyle,50,38.04,OK
+136,Pune Open,2024-03-16,50,S010,200 Free,Freestyle,200,193.5,OK
+137,Pune Open,2024-03-16,50,S011,50 Breast,Breaststroke,50,35.65,OK
+138,Pune Open,2024-03-16,50,S011,100 Breast,Breaststroke,100,75.8,OK
+139,Pune Open,2024-03-16,50,S012,100 Back,Backstroke,100,86.38,OK
+140,Pune Open,2024-03-16,50,S012,100 Free,Freestyle,100,75.54,OK
+141,Pune Open,2024-03-16,50,S012,100 Breast,Breaststroke,100,99.23,OK
+142,Pune Open,2024-03-16,50,S013,100 Free,Freestyle,100,,DQ
+143,Pune Open,2024-03-16,50,S013,50 Breast,Breaststroke,50,41.61,OK
+144,Pune Open,2024-03-16,50,S014,200 Free,Freestyle,200,141.92,OK
+145,Pune Open,2024-03-16,50,S014,100 Back,Backstroke,100,75.3,OK
+146,Pune Open,2024-03-16,50,S015,50 Breast,Breaststroke,50,37.57,OK
+147,Pune Open,2024-03-16,50,S016,200 Free,Freestyle,200,144.87,OK
+148,Pune Open,2024-03-16,50,S017,200 Free,Freestyle,200,167.07,OK
+149,Pune Open,2024-03-16,50,S017,100 Free,Freestyle,100,73.07,OK
+150,Pune Open,2024-03-16,50,S017,100 Back,Backstroke,100,81.67,OK
+151,Pune Open,2024-03-16,50,S018,50 Breast,Breaststroke,50,39.98,OK
+152,Pune Open,2024-03-16,50,S018,100 Back,Backstroke,100,74.6,OK
+153,Pune Open,2024-03-16,50,S018,50 Back,Backstroke,50,33.84,OK
+154,Pune Open,2024-03-16,50,S019,50 Fly,Butterfly,50,31.45,OK
+155,Pune Open,2024-03-16,50,S020,100 Breast,Breaststroke,100,77.43,OK
+156,Pune Open,2024-03-16,50,S020,50 Back,Backstroke,50,33.22,OK
+157,Pune Open,2024-03-16,50,S020,200 IM,Individual Medley,200,151.05,OK
+158,Pune Open,2024-03-16,50,S021,50 Back,Backstroke,50,36.22,OK
+159,Pune Open,2024-03-16,50,S021,200 Free,Freestyle,200,148.17,OK
+160,Pune Open,2024-03-16,50,S022,200 IM,Individual Medley,200,186.93,OK
+161,Pune Open,2024-03-16,50,S023,100 Breast,Breaststroke,100,93.01,OK
+162,Pune Open,2024-03-16,50,S023,100 Back,Backstroke,100,84.66,OK
+163,Pune Open,2024-03-16,50,S023,50 Breast,Breaststroke,50,43.64,OK
+164,Pune Open,2024-03-16,50,S024,50 Breast,Breaststroke,50,42.8,OK
+165,Pune Open,2024-03-16,50,S024,100 Breast,Breaststroke,100,87.22,OK
+166,Pune Open,2024-03-16,50,S025,100 Back,Backstroke,100,94.03,OK
+167,Pune Open,2024-03-16,50,S025,100 Breast,Breaststroke,100,99.46,OK
+168,Pune Open,2024-03-16,50,S025,50 Back,Backstroke,50,41.33,OK
+169,Pune Open,2024-03-16,50,S026,50 Fly,Butterfly,50,32.91,OK
+170,Pune Open,2024-03-16,50,S026,50 Breast,Breaststroke,50,36.78,OK
+171,Pune Open,2024-03-16,50,S027,100 Breast,Breaststroke,100,96.21,OK
+172,Pune Open,2024-03-16,50,S027,200 Free,Freestyle,200,156.63,OK
+173,Pune Open,2024-03-16,50,S028,200 IM,Individual Medley,200,172.85,OK
+174,Pune Open,2024-03-16,50,S028,100 Back,Backstroke,100,84.36,OK
+175,Pune Open,2024-03-16,50,S029,50 Fly,Butterfly,50,38.42,OK
+176,Pune Open,2024-03-16,50,S030,200 IM,Individual Medley,200,167.06,OK
+177,Pune Open,2024-03-16,50,S030,100 Back,Backstroke,100,80.22,OK
+178,Pune Open,2024-03-16,50,S030,100 Free,Freestyle,100,67.26,OK
+179,Pune Open,2024-03-16,50,S031,50 Fly,Butterfly,50,32.23,OK
+180,Pune Open,2024-03-16,50,S032,200 Free,Freestyle,200,153.85,OK
+181,Pune Open,2024-03-16,50,S032,50 Back,Backstroke,50,38.56,OK
+182,Pune Open,2024-03-16,50,S032,100 Back,Backstroke,100,80.77,OK
+183,Pune Open,2024-03-16,50,S033,50 Fly,Butterfly,50,32.22,OK
+184,Pune Open,2024-03-16,50,S034,50 Breast,Breaststroke,50,46.01,OK
+185,Pune Open,2024-03-16,50,S034,100 Breast,Breaststroke,100,97.06,OK
+186,Pune Open,2024-03-16,50,S034,200 Free,Freestyle,200,163.24,OK
+187,Pune Open,2024-03-16,50,S035,100 Free,Freestyle,100,75.2,OK
+188,Pune Open,2024-03-16,50,S035,50 Free, freestyle ,50,34.26,OK
+189,Pune Open,2024-03-16,50,S035,50 Fly,Butterfly,50,,DQ
+190,Pune Open,2024-03-16,50,S036,50 Fly,Butterfly,50,45.46,OK
+191,Pune Open,2024-03-16,50,S037,100 Back,Backstroke,100,92.28,OK
+192,Pune Open,2024-03-16,50,S038,200 IM,Individual Medley,200,167.98,OK
+193,Pune Open,2024-03-16,50,S038,50 Fly,Butterfly,50,37.68,OK
+194,Pune Open,2024-03-16,50,S038,100 Free,Freestyle,100,70.68,OK
+195,Pune Open,2024-03-16,50,S039,100 Breast,Breaststroke,100,90.68,OK
+196,Pune Open,2024-03-16,50,S039,200 Free,Freestyle,200,154.3,OK
+197,Pune Open,2024-03-16,50,S040,200 Free,Freestyle,200,167.94,OK
+198,Pune Open,2024-03-16,50,S040,50 Back,Backstroke,50,39.16,OK
+199,Pune Open,2024-03-16,50,S041,50 Free,Freestyle,50,30.52,OK
+200,Pune Open,2024-03-16,50,S041,50 Fly,Butterfly,50,36.68,OK
+201,Pune Open,2024-03-16,50,S042,50 Free,Freestyle,50,30.44,OK
+202,Pune Open,2024-03-16,50,S042,50 Fly,Butterfly,50,35.17,OK
+203,Pune Open,2024-03-16,50,S043,100 Free,Freestyle,100,80.39,OK
+204,Pune Open,2024-03-16,50,S044,50 Free,Freestyle,50,32.97,OK
+205,Pune Open,2024-03-16,50,S044,50 Breast,Breaststroke,50,41.06,OK
+206,Pune Open,2024-03-16,50,S045,200 Free,Freestyle,200,175.67,OK
+207,Pune Open,2024-03-16,50,S045,50 Back,Backstroke,50,43.17,OK
+208,Pune Open,2024-03-16,50,S046,100 Breast,Breaststroke,100,95.56,OK
+209,Pune Open,2024-03-16,50,S046,100 Back,Backstroke,100,85.01,OK
+210,Pune Open,2024-03-16,50,S047,100 Free, freestyle ,100,70.01,OK
+211,Pune Open,2024-03-16,50,S048,50 Back,Backstroke,50,44.64,OK
+212,Pune Open,2024-03-16,50,S048,100 Breast,Breaststroke,100,103.82,OK
+213,Pune Open,2024-03-16,50,S048,200 Free,Freestyle,200,183.36,OK
+214,Pune Open,2024-03-16,50,S049,100 Free,Freestyle,100,87.96,OK
+215,Pune Open,2024-03-16,50,S049,200 Free,Freestyle,200,178.02,OK
+216,Pune Open,2024-03-16,50,S049,200 IM,Individual Medley,200,192.41,OK
+217,Pune Open,2024-03-16,50,S050,200 IM,Individual Medley,200,167.11,OK
+218,Pune Open,2024-03-16,50,S050,50 Breast,Breaststroke,50,42.38,OK
+219,Pune Open,2024-03-16,50,S050,100 Back,Backstroke,100,77.41,OK
+220,Pune Open,2024-03-16,50,S051,50 Fly,Butterfly,50,33.87,OK
+221,Pune Open,2024-03-16,50,S051,200 IM,Individual Medley,200,160.08,OK
+222,Pune Open,2024-03-16,50,S052,100 Free,Freestyle,100,78.3,OK
+223,Pune Open,2024-03-16,50,S053,50 Breast,Breaststroke,50,50.58,OK
+224,Pune Open,2024-03-16,50,S053,100 Back,Backstroke,100,91.38,OK
+225,Pune Open,2024-03-16,50,S054,50 Breast,Breaststroke,50,49.54,OK
+226,Pune Open,2024-03-16,50,S054,50 Free,Freestyle,50,36.14,OK
+227,Pune Open,2024-03-16,50,S055,100 Back,Backstroke,100,78.0,OK
+228,Pune Open,2024-03-16,50,S056,100 Back,Backstroke,100,83.5,OK
+229,Pune Open,2024-03-16,50,S056,100 Free,Freestyle,100,71.66,OK
+230,Pune Open,2024-03-16,50,S056,50 Back,Backstroke,50,37.67,OK
+231,Pune Open,2024-03-16,50,S057,200 IM,Individual Medley,200,171.56,OK
+232,Pune Open,2024-03-16,50,S058,100 Back,Backstroke,100,73.49,OK
+233,Pune Open,2024-03-16,50,S059,200 IM,Individual Medley,200,151.36,OK
+234,Pune Open,2024-03-16,50,S060,200 IM,Individual Medley,200,137.76,OK
+235,Pune Open,2024-03-16,50,S060,50 Fly,Butterfly,50,30.43,OK
+236,Summer Splash,2024-05-11,25,S001,200 IM,Individual Medley,200,143.79,OK
+237,Summer Splash,2024-05-11,25,S002,200 Free,Freestyle,200,,DQ
+238,Summer Splash,2024-05-11,25,S003,50 Breast,Breaststroke,50,36.22,OK
+239,Summer Splash,2024-05-11,25,S004,200 IM,Individual Medley,200,178.25,OK
+240,Summer Splash,2024-05-11,25,S004,200 Free,Freestyle,200,145.8,OK
+241,Summer Splash,2024-05-11,25,S004,50 Free,Freestyle,50,30.92,OK
+242,Summer Splash,2024-05-11,25,S005,50 Fly,Butterfly,50,33.21,OK
+243,Summer Splash,2024-05-11,25,S006,100 Back,Backstroke,100,81.32,OK
+244,Summer Splash,2024-05-11,25,S006,50 Breast,Breaststroke,50,43.79,OK
+245,Summer Splash,2024-05-11,25,S007,200 Free,Freestyle,200,173.5,OK
+246,Summer Splash,2024-05-11,25,S007,200 IM,Individual Medley,200,197.49,OK
+247,Summer Splash,2024-05-11,25,S008,200 Free,Freestyle,200,169.74,OK
+248,Summer Splash,2024-05-11,25,S008,50 Free,Freestyle,50,37.0,OK
+249,Summer Splash,2024-05-11,25,S008,200 IM,Individual Medley,200,193.74,OK
+250,Summer Splash,2024-05-11,25,S009,100 Back,Backstroke,100,,DQ
+251,Summer Splash,2024-05-11,25,S009,50 Fly,Butterfly,50,43.45,OK
+252,Summer Splash,2024-05-11,25,S010,200 IM,Individual Medley,200,219.91,OK
+253,Summer Splash,2024-05-11,25,S010,50 Free,Freestyle,50,39.76,OK
+254,Summer Splash,2024-05-11,25,S011,200 Free,Freestyle,200,126.53,OK
+255,Summer Splash,2024-05-11,25,S012,200 Free,Freestyle,200,166.36,OK
+256,Summer Splash,2024-05-11,25,S013,50 Free,Freestyle,50,31.21,OK
+257,Summer Splash,2024-05-11,25,S013,50 Fly,Butterfly,50,37.13,OK
+258,Summer Splash,2024-05-11,25,S013,50 free,Backstroke,50,35.63,OK
+259,Summer Splash,2024-05-11,25,S014,50 Back,Backstroke,50,34.02,OK
+260,Summer Splash,2024-05-11,25,S015,50 Back,Backstroke,50,32.43,OK
+261,Summer Splash,2024-05-11,25,S015,50 Free,Freestyle,50,28.74,OK
+262,Summer Splash,2024-05-11,25,S016,50 Fly,Butterfly,50,36.22,OK
+263,Summer Splash,2024-05-11,25,S016,200 IM,Individual Medley,200,177.61,OK
+264,Summer Splash,2024-05-11,25,S016,100 Free,Freestyle,100,73.62,OK
+265,Summer Splash,2024-05-11,25,S017,100 Free,Freestyle,100,80.08,OK
+266,Summer Splash,2024-05-11,25,S017,50 Fly,Butterfly,50,38.29,OK
+267,Summer Splash,2024-05-11,25,S017,50 Back,Backstroke,50,40.38,OK
+268,Summer Splash,2024-05-11,25,S018,200 IM,Individual Medley,200,160.57,OK
+269,Summer Splash,2024-05-11,25,S018,100 Breast,Breaststroke,100,85.03,OK
+270,Summer Splash,2024-05-11,25,S019,50 Breast,Breaststroke,50,37.2,OK
+271,Summer Splash,2024-05-11,25,S020,50 Free,Freestyle,50,27.99,OK
+272,Summer Splash,2024-05-11,25,S021,50 Back,Backstroke,50,36.53,OK
+273,Summer Splash,2024-05-11,25,S021,100 Free,Freestyle,100,67.55,OK
+274,Summer Splash,2024-05-11,25,S022,200 IM,Individual Medley,200,,DQ
+275,Summer Splash,2024-05-11,25,S022,50 Breast,Breaststroke,50,48.34,OK
+276,Summer Splash,2024-05-11,25,S022,50 Free,Freestyle,50,35.28,OK
+277,Summer Splash,2024-05-11,25,S023,100 Breast,Breaststroke,100,95.18,OK
+278,Summer Splash,2024-05-11,25,S023,200 Free, freestyle ,200,164.06,OK
+279,Summer Splash,2024-05-11,25,S024,50 Breast,Breaststroke,50,41.06,OK
+280,Summer Splash,2024-05-11,25,S024,50 Free,Freestyle,50,29.63,OK
+281,Summer Splash,2024-05-11,25,S025,200 Free,Freestyle,200,181.85,OK
+282,Summer Splash,2024-05-11,25,S025,100 Breast,Breaststroke,100,106.45,OK
+283,Summer Splash,2024-05-11,25,S025,200 IM,Individual Medley,200,190.25,OK
+284,Summer Splash,2024-05-11,25,S026,50 Fly,Butterfly,50,32.58,OK
+285,Summer Splash,2024-05-11,25,S027,100 Free,Freestyle,100,76.46,OK
+286,Summer Splash,2024-05-11,25,S027,50 Free,Freestyle,50,34.08,OK
+287,Summer Splash,2024-05-11,25,S027,50 Fly,Butterfly,50,39.36,OK
+288,Summer Splash,2024-05-11,25,S028,50 Fly,Butterfly,50,36.28,OK
+289,Summer Splash,2024-05-11,25,S028,50 Free,Freestyle,50,32.72,OK
+290,Summer Splash,2024-05-11,25,S028,100 Breast,Breaststroke,100,98.69,OK
+291,Summer Splash,2024-05-11,25,S029,50 Back,Backstroke,50,38.46,OK
+292,Summer Splash,2024-05-11,25,S029,200 Free,Freestyle,200,165.62,OK
+293,Summer Splash,2024-05-11,25,S030,200 IM,Individual Medley,200,171.85,OK
+294,Summer Splash,2024-05-11,25,S031,50 Breast,Breaststroke,50,37.47,OK
+295,Summer Splash,2024-05-11,25,S031,200 Free,Freestyle,200,140.78,OK
+296,Summer Splash,2024-05-11,25,S031,50 Free,Freestyle,50,28.75,OK
+297,Summer Splash,2024-05-11,25,S032,50 Breast,Breaststroke,50,44.85,OK
+298,Summer Splash,2024-05-11,25,S032,50 Back,Backstroke,50,39.76,OK
+299,Summer Splash,2024-05-11,25,S033,200 Free,Freestyle,200,138.45,OK
+300,Summer Splash,2024-05-11,25,S033,100 Breast,Breaststroke,100,81.37,OK
+301,Summer Splash,2024-05-11,25,S033,100 Back,Backstroke,100,71.7,OK
+302,Summer Splash,2024-05-11,25,S034,50 Breast,Breaststroke,50,44.15,OK
+303,Summer Splash,2024-05-11,25,S034,100 Breast,Breaststroke,100,96.02,OK
+304,Summer Splash,2024-05-11,25,S034,100 Free,Freestyle,100,77.46,OK
+305,Summer Splash,2024-05-11,25,S035,50 Free,Freestyle,50,34.08,OK
+306,Summer Splash,2024-05-11,25,S036,50 Fly,Butterfly,50,45.33,OK
+307,Summer Splash,2024-05-11,25,S037,50 Free,Freestyle,50,36.15,OK
+308,Summer Splash,2024-05-11,25,S037,100 Breast,Breaststroke,100,106.22,OK
+309,Summer Splash,2024-05-11,25,S037,50 Back,Backstroke,50,42.86,OK
+310,Summer Splash,2024-05-11,25,S038,200 Free,Freestyle,200,161.04,OK
+311,Summer Splash,2024-05-11,25,S039,200 Free,Freestyle,200,156.72,OK
+312,Summer Splash,2024-05-11,25,S039,50 Fly,Butterfly,50,36.93,OK
+313,Summer Splash,2024-05-11,25,S040,200 Free,Freestyle,200,166.66,OK
+314,Summer Splash,2024-05-11,25,S041,50 Breast,Breaststroke,50,41.58,OK
+315,Summer Splash,2024-05-11,25,S042,200 IM,Individual Medley,200,167.19,OK
+316,Summer Splash,2024-05-11,25,S043,100 Back,Backstroke,100,94.17,OK
+317,Summer Splash,2024-05-11,25,S043,50 Free,Freestyle,50,38.22,OK
+318,Summer Splash,2024-05-11,25,S043,50 Fly,Butterfly,50,41.9,OK
+319,Summer Splash,2024-05-11,25,S044,50 Breast,Breaststroke,50,41.27,OK
+320,Summer Splash,2024-05-11,25,S045,200 IM,Individual Medley,200,198.67,OK
+321,Summer Splash,2024-05-11,25,S045,200 Free,Freestyle,200,178.84,OK
+322,Summer Splash,2024-05-11,25,S046,50 Free,Freestyle,50,33.44,OK
+323,Summer Splash,2024-05-11,25,S046,200 Free,Freestyle,200,160.92,OK
+324,Summer Splash,2024-05-11,25,S046,50 Fly,Butterfly,50,37.69,OK
+325,Summer Splash,2024-05-11,25,S047,50 Free,Freestyle,50,32.97,OK
+326,Summer Splash,2024-05-11,25,S048,200 Free,Freestyle,200,172.2,OK
+327,Summer Splash,2024-05-11,25,S048,100 Back,Backstroke,100,95.34,OK
+328,Summer Splash,2024-05-11,25,S049,200 IM,Individual Medley,200,216.08,OK
+329,Summer Splash,2024-05-11,25,S049,50 Fly,Butterfly,50,43.38,OK
+330,Summer Splash,2024-05-11,25,S050,100 Back,Backstroke,100,79.94,OK
+331,Summer Splash,2024-05-11,25,S050,50 Breast,Breaststroke,50,40.62,OK
+332,Summer Splash,2024-05-11,25,S050,200 IM,Individual Medley,200,170.52,OK
+333,Summer Splash,2024-05-11,25,S051,50 Back,Backstroke,50,36.1,OK
+334,Summer Splash,2024-05-11,25,S052,50 Free,Freestyle,50,34.77,OK
+335,Summer Splash,2024-05-11,25,S052,100 Back,Backstroke,100,88.72,OK
+336,Summer Splash,2024-05-11,25,S052,100 Breast,Breaststroke,100,101.32,OK
+337,Summer Splash,2024-05-11,25,S053,100 Breast,Breaststroke,100,98.24,OK
+338,Summer Splash,2024-05-11,25,S053,50 Breast,Breaststroke,50,47.68,OK
+339,Summer Splash,2024-05-11,25,S053,200 Free,Freestyle,200,177.69,OK
+340,Summer Splash,2024-05-11,25,S054,50 Free,Freestyle,50,38.01,OK
+341,Summer Splash,2024-05-11,25,S054,50 Back,Backstroke,50,,DQ
+342,Summer Splash,2024-05-11,25,S054,50 Fly,Butterfly,50,41.48,OK
+343,Summer Splash,2024-05-11,25,S055,50 Back,Backstroke,50,39.66,OK
+344,Summer Splash,2024-05-11,25,S055,100 Back,Backstroke,100,81.98,OK
+345,Summer Splash,2024-05-11,25,S056,50 Breast,Breaststroke,50,43.3,OK
+346,Summer Splash,2024-05-11,25,S056,50 Free,Freestyle,50,34.6,OK
+347,Summer Splash,2024-05-11,25,S056,50 Fly,Butterfly,50,38.13,OK
+348,Summer Splash,2024-05-11,25,S057,50 Back,Backstroke,50,36.38,OK
+349,Summer Splash,2024-05-11,25,S058,200 IM,Individual Medley,200,161.72,OK
+350,Summer Splash,2024-05-11,25,S058,100 Breast,Breaststroke,100,84.39,OK
+351,Summer Splash,2024-05-11,25,S058,50 Fly,Butterfly,50,33.35,OK
+352,Summer Splash,2024-05-11,25,S059,50 Fly,Butterfly,50,32.56,OK
+353,Summer Splash,2024-05-11,25,S059,50 Free,Freestyle,50,27.89,OK
+354,Summer Splash,2024-05-11,25,S060,100 Free,Freestyle,100,62.1,OK
+355,State Qualifier,2024-08-24,50,S001,50 Fly,Butterfly,50,30.05,OK
+356,State Qualifier,2024-08-24,50,S001,200 IM,Individual Medley,200,146.93,OK
+357,State Qualifier,2024-08-24,50,S002,100 Free,Freestyle,100,63.53,OK
+358,State Qualifier,2024-08-24,50,S002,50 free,Breaststroke,100,83.83,OK
+359,State Qualifier,2024-08-24,50,S002,50 Breast,Breaststroke,50,40.46,OK
+360,State Qualifier,2024-08-24,50,S003,50 Fly,Butterfly,50,29.95,OK
+361,State Qualifier,2024-08-24,50,S004,50 Free,Freestyle,50,28.45,OK
+362,State Qualifier,2024-08-24,50,S004,200 Free,Freestyle,200,145.74,OK
+363,State Qualifier,2024-08-24,50,S004,50 Back,Backstroke,50,,DQ
+364,State Qualifier,2024-08-24,50,S005,200 IM,Individual Medley,200,158.83,OK
+365,State Qualifier,2024-08-24,50,S005,100 Back,Backstroke,100,74.91,OK
+366,State Qualifier,2024-08-24,50,S005,50 Breast,Breaststroke,50,39.25,OK
+367,State Qualifier,2024-08-24,50,S006,100 Free,Freestyle,100,73.37,OK
+368,State Qualifier,2024-08-24,50,S006,200 IM,Individual Medley,200,175.72,OK
+369,State Qualifier,2024-08-24,50,S006,100 Back,Backstroke,100,81.46,OK
+370,State Qualifier,2024-08-24,50,S007,50 Breast,Breaststroke,50,48.44,OK
+371,State Qualifier,2024-08-24,50,S007,200 IM,Individual Medley,200,195.7,OK
+372,State Qualifier,2024-08-24,50,S007,100 Back,Backstroke,100,87.39,OK
+373,State Qualifier,2024-08-24,50,S008,100 Back,Backstroke,100,87.24,OK
+374,State Qualifier,2024-08-24,50,S009,100 Free,Freestyle,100,80.54,OK
+375,State Qualifier,2024-08-24,50,S009,50 Breast,Breaststroke,50,48.5,OK
+376,State Qualifier,2024-08-24,50,S010,50 Free,Freestyle,50,40.21,OK
+377,State Qualifier,2024-08-24,50,S010,100 Back,Backstroke,100,97.47,OK
+378,State Qualifier,2024-08-24,50,S011,200 IM,Individual Medley,200,139.73,OK
+379,State Qualifier,2024-08-24,50,S011,100 Free,Freestyle,100,59.01,OK
+380,State Qualifier,2024-08-24,50,S011,50 Back,Backstroke,50,31.63,OK
+381,State Qualifier,2024-08-24,50,S012,100 Back,Backstroke,100,86.25,OK
+382,State Qualifier,2024-08-24,50,S013,50 Breast,Breaststroke,50,39.25,OK
+383,State Qualifier,2024-08-24,50,S013,100 Back,Backstroke,100,76.12,OK
+384,State Qualifier,2024-08-24,50,S013,200 IM,Individual Medley,200,167.98,OK
+385,State Qualifier,2024-08-24,50,S014,100 Back,Backstroke,100,70.09,OK
+386,State Qualifier,2024-08-24,50,S014,200 Free,Freestyle,200,130.6,OK
+387,State Qualifier,2024-08-24,50,S014,50 Free,Freestyle,50,28.6,OK
+388,State Qualifier,2024-08-24,50,S015,100 Breast,Breaststroke,100,76.91,OK
+389,State Qualifier,2024-08-24,50,S016,50 Back,Backstroke,50,36.96,OK
+390,State Qualifier,2024-08-24,50,S016,100 Free,Freestyle,100,67.87,OK
+391,State Qualifier,2024-08-24,50,S017,200 Free,Freestyle,200,156.29,OK
+392,State Qualifier,2024-08-24,50,S018,200 IM,Individual Medley,200,161.55,OK
+393,State Qualifier,2024-08-24,50,S018,200 Free,Freestyle,200,136.1,OK
+394,State Qualifier,2024-08-24,50,S018,50 Back,Backstroke,50,34.28,OK
+395,State Qualifier,2024-08-24,50,S019,200 IM,Individual Medley,200,157.29,OK
+396,State Qualifier,2024-08-24,50,S019,50 Breast,Breaststroke,50,37.4,OK
+397,State Qualifier,2024-08-24,50,S020,100 Back,Backstroke,100,65.75,OK
+398,State Qualifier,2024-08-24,50,S020,200 IM,Individual Medley,200,151.67,OK
+399,State Qualifier,2024-08-24,50,S021,200 Free,Freestyle,200,152.46,OK
+400,State Qualifier,2024-08-24,50,S022,50 Breast,Breaststroke,50,44.14,OK
+401,State Qualifier,2024-08-24,50,S022,100 Free,Freestyle,100,74.83,OK
+402,State Qualifier,2024-08-24,50,S022,50 Back,Backstroke,50,39.42,OK
+403,State Qualifier,2024-08-24,50,S023,100 Free,Freestyle,100,71.83,OK
+404,State Qualifier,2024-08-24,50,S023,50 Free,Freestyle,50,32.23,OK
+405,State Qualifier,2024-08-24,50,S023,100 Breast, freestyle ,100,91.98,OK
+406,State Qualifier,2024-08-24,50,S024,50 Back,Backstroke,50,35.32,OK
+407,State Qualifier,2024-08-24,50,S024,100 Breast,Breaststroke,100,84.83,OK
+408,State Qualifier,2024-08-24,50,S025,200 Free,Freestyle,200,165.96,OK
+409,State Qualifier,2024-08-24,50,S025,100 Free,Freestyle,100,79.72,OK
+410,State Qualifier,2024-08-24,50,S025,100 Breast,Breaststroke,100,98.34,OK
+411,State Qualifier,2024-08-24,50,S026,100 Breast,Breaststroke,100,80.06,OK
+412,State Qualifier,2024-08-24,50,S026,100 Back,Backstroke,100,71.71,OK
+413,State Qualifier,2024-08-24,50,S026,200 IM,Individual Medley,200,150.71,OK
+414,State Qualifier,2024-08-24,50,S027,50 Breast,Breaststroke,50,41.53,OK
+415,State Qualifier,2024-08-24,50,S027,200 Free,Freestyle,200,158.38,OK
+416,State Qualifier,2024-08-24,50,S028,50 Back,Backstroke,50,37.44,OK
+417,State Qualifier,2024-08-24,50,S029,50 Fly,Butterfly,50,37.67,OK
+418,State Qualifier,2024-08-24,50,S029,50 Back,Backstroke,50,39.57,OK
+419,State Qualifier,2024-08-24,50,S029,200 Free,Freestyle,200,155.3,OK
+420,State Qualifier,2024-08-24,50,S030,200 Free,Freestyle,200,143.76,OK
+421,State Qualifier,2024-08-24,50,S030,100 Back, freestyle ,100,73.88,OK
+422,State Qualifier,2024-08-24,50,S031,200 Free,Freestyle,200,131.6,OK
+423,State Qualifier,2024-08-24,50,S031,50 Back,Backstroke,50,32.94,OK
+424,State Qualifier,2024-08-24,50,S032,100 Back,Backstroke,100,79.14,OK
+425,State Qualifier,2024-08-24,50,S032,200 Free,Freestyle,200,160.0,OK
+426,State Qualifier,2024-08-24,50,S032,100 Breast,Breaststroke,100,88.92,OK
+427,State Qualifier,2024-08-24,50,S033,200 Free,Freestyle,200,134.0,OK
+428,State Qualifier,2024-08-24,50,S033,200 IM,Individual Medley,200,146.9,OK
+429,State Qualifier,2024-08-24,50,S033,50 Back,Backstroke,50,31.54,OK
+430,State Qualifier,2024-08-24,50,S034,200 IM,Individual Medley,200,182.02,OK
+431,State Qualifier,2024-08-24,50,S034,100 Breast,Breaststroke,100,93.62,OK
+432,State Qualifier,2024-08-24,50,S035,50 Breast,Breaststroke,50,,DQ
+433,State Qualifier,2024-08-24,50,S035,100 Breast,Breaststroke,100,95.58,OK
+434,State Qualifier,2024-08-24,50,S035,200 IM,Individual Medley,200,183.44,OK
+435,State Qualifier,2024-08-24,50,S036,100 Free,Freestyle,100,84.91,OK
+436,State Qualifier,2024-08-24,50,S037,200 IM,Individual Medley,200,207.82,OK
+437,State Qualifier,2024-08-24,50,S037,50 Back,Backstroke,50,42.73,OK
+438,State Qualifier,2024-08-24,50,S037,50 Breast,Breaststroke,50,49.67,OK
+439,State Qualifier,2024-08-24,50,S038,50 Breast,Breaststroke,50,39.44,OK
+440,State Qualifier,2024-08-24,50,S038,200 IM,Individual Medley,200,166.0,OK
+441,State Qualifier,2024-08-24,50,S039,50 Back,Backstroke,50,36.96,OK
+442,State Qualifier,2024-08-24,50,S039,200 Free,Freestyle,200,157.33,OK
+443,State Qualifier,2024-08-24,50,S040,50 Breast,Breaststroke,50,43.13,OK
+444,State Qualifier,2024-08-24,50,S040,50 Free,Freestyle,50,33.64,OK
+445,State Qualifier,2024-08-24,50,S040,100 Back,Backstroke,100,83.72,OK
+446,State Qualifier,2024-08-24,50,S041,100 Back,Backstroke,100,81.18,OK
+447,State Qualifier,2024-08-24,50,S041,50 Breast,Breaststroke,50,40.86,OK
+448,State Qualifier,2024-08-24,50,S042,100 Free,Freestyle,100,61.9,OK
+449,State Qualifier,2024-08-24,50,S043,100 Free,Freestyle,100,77.62,OK
+450,State Qualifier,2024-08-24,50,S043,100 Breast,Breaststroke,100,95.38,OK
+451,State Qualifier,2024-08-24,50,S044,200 Free,Freestyle,200,148.77,OK
+452,State Qualifier,2024-08-24,50,S045,100 Breast,Breaststroke,100,100.51,OK
+453,State Qualifier,2024-08-24,50,S046,50 Breast,Breaststroke,50,44.1,OK
+454,State Qualifier,2024-08-24,50,S046,50 Free,Freestyle,50,31.67,OK
+455,State Qualifier,2024-08-24,50,S046,100 Free,Freestyle,100,73.65,OK
+456,State Qualifier,2024-08-24,50,S047,100 Breast,Breaststroke,100,91.9,OK
+457,State Qualifier,2024-08-24,50,S047,50 Fly,Butterfly,50,36.54,OK
+458,State Qualifier,2024-08-24,50,S048,100 Free,Freestyle,100,81.85,OK
+459,State Qualifier,2024-08-24,50,S049,100 Breast,Breaststroke,100,,DQ
+460,State Qualifier,2024-08-24,50,S050,50 Free,Freestyle,50,,DQ
+461,State Qualifier,2024-08-24,50,S051,50 Fly,Butterfly,50,31.93,OK
+462,State Qualifier,2024-08-24,50,S051,50 Free,Freestyle,50,29.35,OK
+463,State Qualifier,2024-08-24,50,S052,50 Free,Freestyle,50,,DQ
+464,State Qualifier,2024-08-24,50,S053,200 IM,Individual Medley,200,189.03,OK
+465,State Qualifier,2024-08-24,50,S053,100 Back,Backstroke,100,90.67,OK
+466,State Qualifier,2024-08-24,50,S054,100 Free,Freestyle,100,84.05,OK
+467,State Qualifier,2024-08-24,50,S054,100 Breast,Breaststroke,100,99.44,OK
+468,State Qualifier,2024-08-24,50,S055,100 Breast,Breaststroke,100,89.17,OK
+469,State Qualifier,2024-08-24,50,S056,200 Free,Freestyle,200,159.69,OK
+470,State Qualifier,2024-08-24,50,S056,100 Breast,Breaststroke,100,88.04,OK
+471,State Qualifier,2024-08-24,50,S057,50 Free,Freestyle,50,28.51,OK
+472,State Qualifier,2024-08-24,50,S058,50 Back,Backstroke,50,,DQ
+473,State Qualifier,2024-08-24,50,S058,50 Free,Freestyle,50,27.78,OK
+474,State Qualifier,2024-08-24,50,S059,50 Back,Backstroke,50,33.07,OK
+475,State Qualifier,2024-08-24,50,S060,50 Breast,Breaststroke,50,33.69,OK
+476,Diwali Cup,2024-10-26,25,S001,100 Back,Backstroke,100,66.93,OK
+477,Diwali Cup,2024-10-26,25,S001,200 Free,Freestyle,200,131.2,OK
+478,Diwali Cup,2024-10-26,25,S002,200 IM,Individual Medley,200,171.33,OK
+479,Diwali Cup,2024-10-26,25,S002,50 Fly,Butterfly,50,34.66,OK
+480,Diwali Cup,2024-10-26,25,S002,100 Free,Freestyle,100,69.52,OK
+481,Diwali Cup,2024-10-26,25,S003,200 IM,Individual Medley,200,146.48,OK
+482,Diwali Cup,2024-10-26,25,S003,100 Free,Freestyle,100,56.59,OK
+483,Diwali Cup,2024-10-26,25,S004,50 Fly,Butterfly,50,35.16,OK
+484,Diwali Cup,2024-10-26,25,S005,50 Breast,Breaststroke,50,38.19,OK
+485,Diwali Cup,2024-10-26,25,S005,200 IM,Individual Medley,200,157.98,OK
+486,Diwali Cup,2024-10-26,25,S005,50 Fly,Butterfly,50,34.75,OK
+487,Diwali Cup,2024-10-26,25,S006,50 Breast,Breaststroke,50,42.96,OK
+488,Diwali Cup,2024-10-26,25,S006,100 Back,Backstroke,100,82.71,OK
+489,Diwali Cup,2024-10-26,25,S007,50 Back,Backstroke,50,41.79,OK
+490,Diwali Cup,2024-10-26,25,S007,100 Breast,Breaststroke,100,99.94,OK
+491,Diwali Cup,2024-10-26,25,S007,100 Free,Freestyle,100,77.05,OK
+492,Diwali Cup,2024-10-26,25,S008,50 Breast,Breaststroke,50,48.35,OK
+493,Diwali Cup,2024-10-26,25,S009,200 IM,Individual Medley,200,208.23,OK
+494,Diwali Cup,2024-10-26,25,S010,100 Back,Backstroke,100,100.35,OK
+495,Diwali Cup,2024-10-26,25,S010,50 Free,Freestyle,50,39.56,OK
+496,Diwali Cup,2024-10-26,25,S010,50 Breast,Breaststroke,50,52.11,OK
+497,Diwali Cup,2024-10-26,25,S011,200 Free,Freestyle,200,134.91,OK
+498,Diwali Cup,2024-10-26,25,S012,50 Back,Backstroke,50,37.57,OK
+499,Diwali Cup,2024-10-26,25,S013,200 Free,Freestyle,200,141.22,OK
+500,Diwali Cup,2024-10-26,25,S014,100 Free,Freestyle,100,63.24,OK
+501,Diwali Cup,2024-10-26,25,S014,50 Free,Freestyle,50,28.6,OK
+502,Diwali Cup,2024-10-26,25,S015,100 Back,Backstroke,100,66.9,OK
+503,Diwali Cup,2024-10-26,25,S015,200 IM,Individual Medley,200,147.16,OK
+504,Diwali Cup,2024-10-26,25,S015,50 Breast,Breaststroke,50,37.29,OK
+505,Diwali Cup,2024-10-26,25,S016,100 Back,Backstroke,100,81.08,OK
+506,Diwali Cup,2024-10-26,25,S016,100 Free,Freestyle,100,69.5,OK
+507,Diwali Cup,2024-10-26,25,S016,50 Free,Freestyle,50,31.44,OK
+508,Diwali Cup,2024-10-26,25,S017,50 Back,Backstroke,50,40.51,OK
+509,Diwali Cup,2024-10-26,25,S017,200 IM,Individual Medley,200,181.45,OK
+510,Diwali Cup,2024-10-26,25,S018,50 Breast,Breaststroke,50,39.32,OK
+511,Diwali Cup,2024-10-26,25,S019,100 Free,Freestyle,100,60.71,OK
+512,Diwali Cup,2024-10-26,25,S020,50 Fly,Butterfly,50,31.15,OK
+513,Diwali Cup,2024-10-26,25,S020,50 Free,Freestyle,50,27.05,OK
+514,Diwali Cup,2024-10-26,25,S021,50 Back,Backstroke,50,36.58,OK
+515,Diwali Cup,2024-10-26,25,S021,100 Free, freestyle ,100,65.76,OK
+516,Diwali Cup,2024-10-26,25,S022,50 Breast,Breaststroke,50,43.59,OK
+517,Diwali Cup,2024-10-26,25,S022,100 Breast,Breaststroke,100,92.29,OK
+518,Diwali Cup,2024-10-26,25,S023,100 Back,Backstroke,100,82.85,OK
+519,Diwali Cup,2024-10-26,25,S024,50 Fly,Butterfly,50,34.82,OK
+520,Diwali Cup,2024-10-26,25,S024,100 Back,Backstroke,100,76.13,OK
+521,Diwali Cup,2024-10-26,25,S024,50 Breast,Breaststroke,50,39.32,OK
+522,Diwali Cup,2024-10-26,25,S025,200 Free,Freestyle,200,176.7,OK
+523,Diwali Cup,2024-10-26,25,S025,50 Free,Freestyle,50,37.88,OK
+524,Diwali Cup,2024-10-26,25,S026,50 Fly,Butterfly,50,33.5,OK
+525,Diwali Cup,2024-10-26,25,S027,100 Back,Backstroke,100,81.55,OK
+526,Diwali Cup,2024-10-26,25,S028,100 Back,Backstroke,100,83.28,OK
+527,Diwali Cup,2024-10-26,25,S028,50 Fly,Butterfly,50,37.54,OK
+528,Diwali Cup,2024-10-26,25,S029,200 IM,Individual Medley,200,173.86,OK
+529,Diwali Cup,2024-10-26,25,S030,100 Free,Freestyle,100,68.3,OK
+530,Diwali Cup,2024-10-26,25,S030,50 Free,Freestyle,50,30.47,OK
+531,Diwali Cup,2024-10-26,25,S030,200 Free,Freestyle,200,153.4,OK
+532,Diwali Cup,2024-10-26,25,S031,50 Back,Backstroke,50,31.69,OK
+533,Diwali Cup,2024-10-26,25,S032,50 Back,Backstroke,50,37.42,OK
+534,Diwali Cup,2024-10-26,25,S032,50 Fly,Butterfly,50,36.53,OK
+535,Diwali Cup,2024-10-26,25,S033,50 Breast,Breaststroke,50,38.53,OK
+536,Diwali Cup,2024-10-26,25,S033,50 Free,Freestyle,50,27.77,OK
+537,Diwali Cup,2024-10-26,25,S033,50 Back,Backstroke,50,33.55,OK
+538,Diwali Cup,2024-10-26,25,S034,200 Free,Freestyle,200,168.62,OK
+539,Diwali Cup,2024-10-26,25,S035,200 IM,Individual Medley,200,179.1,OK
+540,Diwali Cup,2024-10-26,25,S035,100 Back,Backstroke,100,82.96,OK
+541,Diwali Cup,2024-10-26,25,S035,200 Free,Freestyle,200,164.29,OK
+542,Diwali Cup,2024-10-26,25,S036,50 Breast,Breaststroke,50,51.81,OK
+543,Diwali Cup,2024-10-26,25,S037,200 Free,Freestyle,200,181.79,OK
+544,Diwali Cup,2024-10-26,25,S037,100 Back,Backstroke,100,94.21,OK
+545,Diwali Cup,2024-10-26,25,S038,200 Free,Freestyle,200,140.08,OK
+546,Diwali Cup,2024-10-26,25,S038,100 Back,Backstroke,100,79.91,OK
+547,Diwali Cup,2024-10-26,25,S038,100 Breast,Breaststroke,100,89.68,OK
+548,Diwali Cup,2024-10-26,25,S039,50 Fly,Butterfly,50,36.44,OK
+549,Diwali Cup,2024-10-26,25,S039,200 Free,Freestyle,200,145.37,OK
+550,Diwali Cup,2024-10-26,25,S040,200 IM,Individual Medley,200,179.52,OK
+551,Diwali Cup,2024-10-26,25,S040,50 Back,Backstroke,50,39.9,OK
+552,Diwali Cup,2024-10-26,25,S040,50 Free,Freestyle,50,32.95,OK
+553,Diwali Cup,2024-10-26,25,S041,100 Back,Backstroke,100,77.79,OK
+554,Diwali Cup,2024-10-26,25,S042,100 Back,Backstroke,100,76.84,OK
+555,Diwali Cup,2024-10-26,25,S042,50 Back,Backstroke,50,34.06,OK
+556,Diwali Cup,2024-10-26,25,S042,50 Free,Freestyle,50,29.15,OK
+557,Diwali Cup,2024-10-26,25,S043,50 Breast,Breaststroke,50,44.46,OK
+558,Diwali Cup,2024-10-26,25,S043,200 IM,Individual Medley,200,202.41,OK
+559,Diwali Cup,2024-10-26,25,S044,200 IM,Individual Medley,200,170.61,OK
+560,Diwali Cup,2024-10-26,25,S045,50 Free,Freestyle,50,35.7,OK
+561,Diwali Cup,2024-10-26,25,S045,50 Back,Backstroke,50,42.62,OK
+562,Diwali Cup,2024-10-26,25,S045,100 Back,Backstroke,100,87.28,OK
+563,Diwali Cup,2024-10-26,25,S046,100 Free,Freestyle,100,73.38,OK
+564,Diwali Cup,2024-10-26,25,S046,200 IM,Individual Medley,200,185.63,OK
+565,Diwali Cup,2024-10-26,25,S047,50 Free,Freestyle,50,34.01,OK
+566,Diwali Cup,2024-10-26,25,S048,200 IM,Individual Medley,200,208.91,OK
+567,Diwali Cup,2024-10-26,25,S049,200 IM,Individual Medley,200,202.06,OK
+568,Diwali Cup,2024-10-26,25,S049,50 Breast,Breaststroke,50,47.81,OK
+569,Diwali Cup,2024-10-26,25,S049,50 Back,Backstroke,50,44.04,OK
+570,Diwali Cup,2024-10-26,25,S050,50 Back,Backstroke,50,,DQ
+571,Diwali Cup,2024-10-26,25,S050,50 Fly,Butterfly,50,37.33,OK
+572,Diwali Cup,2024-10-26,25,S051,100 Breast,Breaststroke,100,84.42,OK
+573,Diwali Cup,2024-10-26,25,S051,50 Back,Backstroke,50,34.24,OK
+574,Diwali Cup,2024-10-26,25,S052,100 Breast,Breaststroke,100,97.39,OK
+575,Diwali Cup,2024-10-26,25,S052,50 Free,Freestyle,50,33.18,OK
+576,Diwali Cup,2024-10-26,25,S053,100 Back,Backstroke,100,89.76,OK
+577,Diwali Cup,2024-10-26,25,S053,50 Breast,Breaststroke,50,46.8,OK
+578,Diwali Cup,2024-10-26,25,S054,100 Free,Freestyle,100,79.86,OK
+579,Diwali Cup,2024-10-26,25,S054,200 IM,Individual Medley,200,198.81,OK
+580,Diwali Cup,2024-10-26,25,S055,100 Back,Backstroke,100,79.18,OK
+581,Diwali Cup,2024-10-26,25,S055,50 Breast,Breaststroke,50,41.56,OK
+582,Diwali Cup,2024-10-26,25,S056,50 Free,Freestyle,50,34.49,OK
+583,Diwali Cup,2024-10-26,25,S057,100 Back,Backstroke,100,77.29,OK
+584,Diwali Cup,2024-10-26,25,S057,50 Free,Freestyle,50,,DQ
+585,Diwali Cup,2024-10-26,25,S058,100 Free,Freestyle,100,64.52,OK
+586,Diwali Cup,2024-10-26,25,S058,100 Back,Backstroke,100,73.46,OK
+587,Diwali Cup,2024-10-26,25,S058,100 Breast,Breaststroke,100,86.5,OK
+588,Diwali Cup,2024-10-26,25,S059,50 Fly,Butterfly,50,32.69,OK
+589,Diwali Cup,2024-10-26,25,S059,200 Free,Freestyle,200,135.15,OK
+590,Diwali Cup,2024-10-26,25,S059,50 Back,Backstroke,50,33.05,OK
+591,Diwali Cup,2024-10-26,25,S060,50 Free,Freestyle,50,26.21,OK
+592,District Winter Meet,2025-01-18,25,S001,50 Free,Freestyle,50,26.14,OK
+593,District Winter Meet,2025-01-18,25,S001,50 Back,Backstroke,50,29.89,OK
+594,District Winter Meet,2025-01-18,25,S002,200 IM,Individual Medley,200,156.06,OK
+595,District Winter Meet,2025-01-18,25,S002,100 Breast,Breaststroke,100,82.09,OK
+596,District Winter Meet,2025-01-18,25,S003,50 Breast,Breaststroke,50,33.1,OK
+597,District Winter Meet,2025-01-18,25,S003,200 IM,Individual Medley,200,133.0,OK
+598,District Winter Meet,2025-01-18,25,S003,100 Breast,Breaststroke,100,67.36,OK
+599,District Winter Meet,2025-01-18,25,S004,200 IM,Individual Medley,200,159.75,OK
+600,District Winter Meet,2025-01-18,25,S004,50 Breast,Breaststroke,50,39.11,OK
+601,District Winter Meet,2025-01-18,25,S004,100 Breast,Breaststroke,100,80.19,OK
+602,District Winter Meet,2025-01-18,25,S005,200 Free,Freestyle,200,132.55,OK
+603,District Winter Meet,2025-01-18,25,S005,50 Back,Backstroke,50,32.41,OK
+604,District Winter Meet,2025-01-18,25,S005,50 Breast,Breaststroke,50,36.34,OK
+605,District Winter Meet,2025-01-18,25,S006,50 Breast,Breaststroke,50,41.63,OK
+606,District Winter Meet,2025-01-18,25,S006,100 Free,Freestyle,100,67.62,OK
+607,District Winter Meet,2025-01-18,25,S007,200 Free,Freestyle,200,164.33,OK
+608,District Winter Meet,2025-01-18,25,S008,100 Breast,Breaststroke,100,103.79,OK
+609,District Winter Meet,2025-01-18,25,S008,200 IM,Individual Medley,200,181.88,OK
+610,District Winter Meet,2025-01-18,25,S009,100 Back,Backstroke,100,86.59,OK
+611,District Winter Meet,2025-01-18,25,S009,50 Breast,Breaststroke,50,48.73,OK
+612,District Winter Meet,2025-01-18,25,S010,100 Back,Backstroke,100,91.57,OK
+613,District Winter Meet,2025-01-18,25,S011,100 Breast,Breaststroke,100,69.77,OK
+614,District Winter Meet,2025-01-18,25,S011,100 Back,Backstroke,100,63.68,OK
+615,District Winter Meet,2025-01-18,25,S012,100 Free,Freestyle,100,72.0,OK
+616,District Winter Meet,2025-01-18,25,S012,50 Breast,Breaststroke,50,41.62,OK
+617,District Winter Meet,2025-01-18,25,S012,100 Breast,Breaststroke,100,88.62,OK
+618,District Winter Meet,2025-01-18,25,S013,200 Free,Freestyle,200,137.72,OK
+619,District Winter Meet,2025-01-18,25,S013,100 Free,Freestyle,100,64.11,OK
+620,District Winter Meet,2025-01-18,25,S013,100 Back, freestyle ,100,74.51,OK
+621,District Winter Meet,2025-01-18,25,S014,100 Breast,Breaststroke,100,75.99,OK
+622,District Winter Meet,2025-01-18,25,S014,50 Back,Backstroke,50,32.94,OK
+623,District Winter Meet,2025-01-18,25,S015,100 Back,Backstroke,100,62.8,OK
+624,District Winter Meet,2025-01-18,25,S015,50 Back,Backstroke,50,31.07,OK
+625,District Winter Meet,2025-01-18,25,S015,50 Free,Freestyle,50,25.75,OK
+626,District Winter Meet,2025-01-18,25,S016,200 IM,Individual Medley,200,167.0,OK
+627,District Winter Meet,2025-01-18,25,S017,100 Free, freestyle ,100,68.8,OK
+628,District Winter Meet,2025-01-18,25,S017,50 Breast,Breaststroke,50,41.37,OK
+629,District Winter Meet,2025-01-18,25,S017,50 Fly,Butterfly,50,36.89,OK
+630,District Winter Meet,2025-01-18,25,S018,50 Back,Backstroke,50,32.62,OK
+631,District Winter Meet,2025-01-18,25,S019,200 Free,Freestyle,200,132.12,OK
+632,District Winter Meet,2025-01-18,25,S019,100 Breast,Breaststroke,100,74.52,OK
+633,District Winter Meet,2025-01-18,25,S020,200 Free,Freestyle,200,122.24,OK
+634,District Winter Meet,2025-01-18,25,S020,100 Back,Backstroke,100,67.23,OK
+635,District Winter Meet,2025-01-18,25,S020,50 Back,Backstroke,50,31.47,OK
+636,District Winter Meet,2025-01-18,25,S021,50 Free,Freestyle,50,30.56,OK
+637,District Winter Meet,2025-01-18,25,S021,50 Back,Backstroke,50,33.11,OK
+638,District Winter Meet,2025-01-18,25,S021,100 Back,Backstroke,100,71.41,OK
+639,District Winter Meet,2025-01-18,25,S022,100 Back,Backstroke,100,82.77,OK
+640,District Winter Meet,2025-01-18,25,S022,50 Free,Freestyle,50,32.98,OK
+641,District Winter Meet,2025-01-18,25,S022,50 Back,Backstroke,50,36.28,OK
+642,District Winter Meet,2025-01-18,25,S023,100 Free,Freestyle,100,68.42,OK
+643,District Winter Meet,2025-01-18,25,S024,50 Breast,Breaststroke,50,37.33,OK
+644,District Winter Meet,2025-01-18,25,S025,100 Free,Freestyle,100,78.58,OK
+645,District Winter Meet,2025-01-18,25,S026,200 Free,Freestyle,200,133.42,OK
+646,District Winter Meet,2025-01-18,25,S026,100 Breast,Breaststroke,100,77.25,OK
+647,District Winter Meet,2025-01-18,25,S026,50 Free,Freestyle,50,28.12,OK
+648,District Winter Meet,2025-01-18,25,S027,50 Back,Backstroke,50,37.44,OK
+649,District Winter Meet,2025-01-18,25,S027,200 Free,Freestyle,200,148.33,OK
+650,District Winter Meet,2025-01-18,25,S027,100 Breast,Breaststroke,100,89.76,OK
+651,District Winter Meet,2025-01-18,25,S028,200 Free,Freestyle,200,145.34,OK
+652,District Winter Meet,2025-01-18,25,S028,200 IM,Individual Medley,200,163.87,OK
+653,District Winter Meet,2025-01-18,25,S028,100 Free,Freestyle,100,66.42,OK
+654,District Winter Meet,2025-01-18,25,S029,100 Free,Freestyle,100,69.96,OK
+655,District Winter Meet,2025-01-18,25,S029,100 Back,Backstroke,100,82.48,OK
+656,District Winter Meet,2025-01-18,25,S030,100 Free,Freestyle,100,62.4,OK
+657,District Winter Meet,2025-01-18,25,S030,50 Free,Freestyle,50,29.89,OK
+658,District Winter Meet,2025-01-18,25,S031,50 Fly,Butterfly,50,30.46,OK
+659,District Winter Meet,2025-01-18,25,S031,100 Back,Backstroke,100,67.58,OK
+660,District Winter Meet,2025-01-18,25,S032,200 Free,Freestyle,200,151.43,OK
+661,District Winter Meet,2025-01-18,25,S032,50 Back,Backstroke,50,36.33,OK
+662,District Winter Meet,2025-01-18,25,S032,100 Free,Freestyle,100,68.41,OK
+663,District Winter Meet,2025-01-18,25,S033,200 Free,Freestyle,200,126.29,OK
+664,District Winter Meet,2025-01-18,25,S033,50 Free,Freestyle,50,25.57,OK
+665,District Winter Meet,2025-01-18,25,S034,200 IM,Individual Medley,200,,DQ
+666,District Winter Meet,2025-01-18,25,S035,50 Fly,Butterfly,50,37.15,OK
+667,District Winter Meet,2025-01-18,25,S035,100 Breast,Breaststroke,100,89.02,OK
+668,District Winter Meet,2025-01-18,25,S035,50 Free,Freestyle,50,31.33,OK
+669,District Winter Meet,2025-01-18,25,S036,50 Back,Backstroke,50,42.19,OK
+670,District Winter Meet,2025-01-18,25,S036,50 Fly,Butterfly,50,40.05,OK
+671,District Winter Meet,2025-01-18,25,S037,200 Free,Freestyle,200,171.93,OK
+672,District Winter Meet,2025-01-18,25,S037,100 Free,Freestyle,100,80.61,OK
+673,District Winter Meet,2025-01-18,25,S038,200 IM,Individual Medley,200,158.4,OK
+674,District Winter Meet,2025-01-18,25,S038,50 Breast,Breaststroke,50,39.29,OK
+675,District Winter Meet,2025-01-18,25,S038,200 Free,Freestyle,200,142.21,OK
+676,District Winter Meet,2025-01-18,25,S039,200 IM,Individual Medley,200,171.12,OK
+677,District Winter Meet,2025-01-18,25,S039,100 Back,Backstroke,100,75.34,OK
+678,District Winter Meet,2025-01-18,25,S040,200 Free,Freestyle,200,149.58,OK
+679,District Winter Meet,2025-01-18,25,S041,50 free, freestyle ,50,35.49,OK
+680,District Winter Meet,2025-01-18,25,S042,100 Breast,Breaststroke,100,77.53,OK
+681,District Winter Meet,2025-01-18,25,S043,50 Back,Backstroke,50,39.72,OK
+682,District Winter Meet,2025-01-18,25,S043,100 Free,Freestyle,100,76.48,OK
+683,District Winter Meet,2025-01-18,25,S043,200 Free,Freestyle,200,165.97,OK
+684,District Winter Meet,2025-01-18,25,S044,50 Breast,Breaststroke,50,38.93,OK
+685,District Winter Meet,2025-01-18,25,S044,50 Back,Backstroke,50,34.17,OK
+686,District Winter Meet,2025-01-18,25,S045,100 Back,Backstroke,100,86.31,OK
+687,District Winter Meet,2025-01-18,25,S045,200 Free, freestyle ,200,167.66,OK
+688,District Winter Meet,2025-01-18,25,S045,50 Back,Backstroke,50,40.76,OK
+689,District Winter Meet,2025-01-18,25,S046,200 Free,Freestyle,200,150.92,OK
+690,District Winter Meet,2025-01-18,25,S047,50 Fly,Butterfly,50,37.01,OK
+691,District Winter Meet,2025-01-18,25,S047,100 Breast,Breaststroke,100,90.65,OK
+692,District Winter Meet,2025-01-18,25,S048,50 Back,Backstroke,50,42.23,OK
+693,District Winter Meet,2025-01-18,25,S048,100 Breast,Breaststroke,100,103.88,OK
+694,District Winter Meet,2025-01-18,25,S049,100 Back,Backstroke,100,88.14,OK
+695,District Winter Meet,2025-01-18,25,S050,50 Breast,Breaststroke,50,40.73,OK
+696,District Winter Meet,2025-01-18,25,S051,100 Free,Freestyle,100,61.38,OK
+697,District Winter Meet,2025-01-18,25,S051,100 Breast,Breaststroke,100,79.69,OK
+698,District Winter Meet,2025-01-18,25,S052,100 Back,Backstroke,100,80.09,OK
+699,District Winter Meet,2025-01-18,25,S052,200 IM,Individual Medley,200,172.38,OK
+700,District Winter Meet,2025-01-18,25,S053,50 Back,Backstroke,50,,DQ
+701,District Winter Meet,2025-01-18,25,S053,50 Free,Freestyle,50,35.05,OK
+702,District Winter Meet,2025-01-18,25,S054,50 Free,Freestyle,50,34.57,OK
+703,District Winter Meet,2025-01-18,25,S055,50 Free,Freestyle,50,30.98,OK
+704,District Winter Meet,2025-01-18,25,S055,50 Breast,Breaststroke,50,39.06,OK
+705,District Winter Meet,2025-01-18,25,S055,200 IM,Individual Medley,200,155.66,OK
+706,District Winter Meet,2025-01-18,25,S056,100 Free,Freestyle,100,67.71,OK
+707,District Winter Meet,2025-01-18,25,S057,100 Back,Backstroke,100,67.5,OK
+708,District Winter Meet,2025-01-18,25,S058,50 Back,Backstroke,50,32.2,OK
+709,District Winter Meet,2025-01-18,25,S058,200 IM,Individual Medley,200,154.09,OK
+710,District Winter Meet,2025-01-18,25,S058,50 Breast,Breaststroke,50,36.3,OK
+711,District Winter Meet,2025-01-18,25,S059,50 Back,Backstroke,50,32.58,OK
+712,District Winter Meet,2025-01-18,25,S059,50 Breast,Breaststroke,50,35.4,OK
+713,District Winter Meet,2025-01-18,25,S059,50 Fly,Butterfly,50,30.86,OK
+714,District Winter Meet,2025-01-18,25,S060,50 Fly,Butterfly,50,28.43,OK
+715,District Winter Meet,2025-01-18,25,S060,50 Back,Backstroke,50,28.42,OK
+716,District Winter Meet,2025-01-18,25,S060,50 Free,Freestyle,50,25.17,OK
+717,Pune Open,2025-03-15,50,S001,200 IM,Individual Medley,200,137.64,OK
+718,Pune Open,2025-03-15,50,S002,50 free,Backstroke,50,34.44,OK
+719,Pune Open,2025-03-15,50,S003,100 Back,Backstroke,100,63.95,OK
+720,Pune Open,2025-03-15,50,S004,50 Back,Backstroke,50,33.55,OK
+721,Pune Open,2025-03-15,50,S004,50 Fly,Butterfly,50,32.52,OK
+722,Pune Open,2025-03-15,50,S004,50 Breast,Breaststroke,50,,DQ
+723,Pune Open,2025-03-15,50,S005,50 Fly,Butterfly,50,29.75,OK
+724,Pune Open,2025-03-15,50,S005,50 free,Breaststroke,100,77.35,OK
+725,Pune Open,2025-03-15,50,S006,100 Free,Freestyle,100,65.68,OK
+726,Pune Open,2025-03-15,50,S006,100 Back,Backstroke,100,72.85,OK
+727,Pune Open,2025-03-15,50,S007,100 Free,Freestyle,100,73.88,OK
+728,Pune Open,2025-03-15,50,S008,50 Fly,Butterfly,50,38.14,OK
+729,Pune Open,2025-03-15,50,S008,200 Free,Freestyle,200,166.34,OK
+730,Pune Open,2025-03-15,50,S008,50 free,Backstroke,50,39.83,OK
+731,Pune Open,2025-03-15,50,S009,200 Free,Freestyle,200,170.58,OK
+732,Pune Open,2025-03-15,50,S009,50 Free,Freestyle,50,,DQ
+733,Pune Open,2025-03-15,50,S009,100 Free,Freestyle,100,,DQ
+734,Pune Open,2025-03-15,50,S010,50 Fly,Butterfly,50,41.41,OK
+735,Pune Open,2025-03-15,50,S010,50 Breast,Breaststroke,50,47.2,OK
+736,Pune Open,2025-03-15,50,S011,50 free,Butterfly,50,28.51,OK
+737,Pune Open,2025-03-15,50,S011,200 IM,Individual Medley,200,130.94,OK
+738,Pune Open,2025-03-15,50,S011,50 Back,Backstroke,50,27.71,OK
+739,Pune Open,2025-03-15,50,S012,50 Breast,Breaststroke,50,39.09,OK
+740,Pune Open,2025-03-15,50,S012,100 Breast,Breaststroke,100,86.86,OK
+741,Pune Open,2025-03-15,50,S012,50 Fly,Butterfly,50,36.22,OK
+742,Pune Open,2025-03-15,50,S013,200 IM,Individual Medley,200,162.35,OK
+743,Pune Open,2025-03-15,50,S013,100 Free,Freestyle,100,63.28,OK
+744,Pune Open,2025-03-15,50,S014,50 Back,Backstroke,50,30.65,OK
+745,Pune Open,2025-03-15,50,S015,200 Free,Freestyle,200,129.17,OK
+746,Pune Open,2025-03-15,50,S015,100 Back,Backstroke,100,61.89,OK
+747,Pune Open,2025-03-15,50,S015,50 Back,Backstroke,50,29.03,OK
+748,Pune Open,2025-03-15,50,S016,50 Back,Backstroke,50,33.78,OK
+749,Pune Open,2025-03-15,50,S017,100 Back,Backstroke,100,78.84,OK
+750,Pune Open,2025-03-15,50,S018,50 Back,Backstroke,50,32.46,OK
+751,Pune Open,2025-03-15,50,S018,100 Back,Backstroke,100,67.19,OK
+752,Pune Open,2025-03-15,50,S018,100 Breast,Breaststroke,100,76.48,OK
+753,Pune Open,2025-03-15,50,S019,50 Back,Backstroke,50,30.21,OK
+754,Pune Open,2025-03-15,50,S019,200 IM,Individual Medley,200,139.86,OK
+755,Pune Open,2025-03-15,50,S020,200 Free,Freestyle,200,119.0,OK
+756,Pune Open,2025-03-15,50,S021,50 Breast,Breaststroke,50,37.05,OK
+757,Pune Open,2025-03-15,50,S021,200 IM,Individual Medley,200,148.43,OK
+758,Pune Open,2025-03-15,50,S022,100 Back,Backstroke,100,81.36,OK
+759,Pune Open,2025-03-15,50,S023,100 Free,Freestyle,100,69.08,OK
+760,Pune Open,2025-03-15,50,S024,50 Fly,Butterfly,50,32.35,OK
+761,Pune Open,2025-03-15,50,S024,100 Back,Backstroke,100,72.99,OK
+762,Pune Open,2025-03-15,50,S024,100 Breast,Breaststroke,100,77.89,OK
+763,Pune Open,2025-03-15,50,S025,50 Fly,Butterfly,50,38.05,OK
+764,Pune Open,2025-03-15,50,S025,200 Free,Freestyle,200,,DQ
+765,Pune Open,2025-03-15,50,S026,50 Fly,Butterfly,50,30.52,OK
+766,Pune Open,2025-03-15,50,S026,50 Back,Backstroke,50,31.11,OK
+767,Pune Open,2025-03-15,50,S026,200 Free,Freestyle,200,125.96,OK
+768,Pune Open,2025-03-15,50,S027,100 Back,Backstroke,100,76.07,OK
+769,Pune Open,2025-03-15,50,S028,100 Breast,Breaststroke,100,84.55,OK
+770,Pune Open,2025-03-15,50,S028,50 Back,Backstroke,50,35.38,OK
+771,Pune Open,2025-03-15,50,S029,50 Back,Backstroke,50,37.23,OK
+772,Pune Open,2025-03-15,50,S029,200 IM,Individual Medley,200,171.69,OK
+773,Pune Open,2025-03-15,50,S030,100 Breast,Breaststroke,100,77.89,OK
+774,Pune Open,2025-03-15,50,S030,50 Breast,Breaststroke,50,36.98,OK
+775,Pune Open,2025-03-15,50,S031,50 Fly,Butterfly,50,29.04,OK
+776,Pune Open,2025-03-15,50,S031,50 Free,Freestyle,50,26.89,OK
+777,Pune Open,2025-03-15,50,S032,50 Back, freestyle ,50,33.67,OK
+778,Pune Open,2025-03-15,50,S032,200 Free,Freestyle,200,141.25,OK
+779,Pune Open,2025-03-15,50,S032,200 IM,Individual Medley,200,157.4,OK
+780,Pune Open,2025-03-15,50,S033,100 Back,Backstroke,100,62.34,OK
+781,Pune Open,2025-03-15,50,S034,50 Fly,Butterfly,50,36.19,OK
+782,Pune Open,2025-03-15,50,S034,200 IM,Individual Medley,200,172.05,OK
+783,Pune Open,2025-03-15,50,S034,100 Free,Freestyle,100,72.02,OK
+784,Pune Open,2025-03-15,50,S035,100 Back,Backstroke,100,78.43,OK
+785,Pune Open,2025-03-15,50,S035,200 IM,Individual Medley,200,168.13,OK
+786,Pune Open,2025-03-15,50,S036,50 Back,Backstroke,50,40.74,OK
+787,Pune Open,2025-03-15,50,S036,200 Free,Freestyle,200,173.98,OK
+788,Pune Open,2025-03-15,50,S037,200 IM,Individual Medley,200,192.42,OK
+789,Pune Open,2025-03-15,50,S037,50 Back,Backstroke,50,39.58,OK
+790,Pune Open,2025-03-15,50,S037,50 Breast,Breaststroke,50,44.54,OK
+791,Pune Open,2025-03-15,50,S038,100 Back,Backstroke,100,72.26,OK
+792,Pune Open,2025-03-15,50,S038,50 Back,Backstroke,50,33.9,OK
+793,Pune Open,2025-03-15,50,S038,50 Fly,Butterfly,50,32.83,OK
+794,Pune Open,2025-03-15,50,S039,50 Breast,Breaststroke,50,39.4,OK
+795,Pune Open,2025-03-15,50,S040,200 Free,Freestyle,200,144.53,OK
+796,Pune Open,2025-03-15,50,S040,100 Back,Backstroke,100,76.38,OK
+797,Pune Open,2025-03-15,50,S040,50 Free,Freestyle,50,30.6,OK
+798,Pune Open,2025-03-15,50,S041,100 Back,Backstroke,100,68.64,OK
+799,Pune Open,2025-03-15,50,S042,50 Breast,Breaststroke,50,35.42,OK
+800,Pune Open,2025-03-15,50,S042,100 Free,Freestyle,100,58.91,OK
+801,Pune Open,2025-03-15,50,S042,200 Free,Freestyle,200,132.36,OK
+802,Pune Open,2025-03-15,50,S043,100 Back,Backstroke,100,83.4,OK
+803,Pune Open,2025-03-15,50,S043,50 Breast,Breaststroke,50,44.02,OK
+804,Pune Open,2025-03-15,50,S044,200 Free,Freestyle,200,137.91,OK
+805,Pune Open,2025-03-15,50,S045,200 IM,Individual Medley,200,177.12,OK
+806,Pune Open,2025-03-15,50,S046,100 Free,Freestyle,100,69.35,OK
+807,Pune Open,2025-03-15,50,S047,200 Free,Freestyle,200,153.47,OK
+808,Pune Open,2025-03-15,50,S048,50 Fly,Butterfly,50,38.26,OK
+809,Pune Open,2025-03-15,50,S048,50 Breast,Breaststroke,50,44.66,OK
+810,Pune Open,2025-03-15,50,S049,100 Breast,Breaststroke,100,99.6,OK
+811,Pune Open,2025-03-15,50,S050,50 Breast,Breaststroke,50,38.21,OK
+812,Pune Open,2025-03-15,50,S050,100 Breast,Breaststroke,100,79.81,OK
+813,Pune Open,2025-03-15,50,S050,100 Back,Backstroke,100,74.38,OK
+814,Pune Open,2025-03-15,50,S051,100 Back,Backstroke,100,70.25,OK
+815,Pune Open,2025-03-15,50,S051,50 Breast,Breaststroke,50,36.24,OK
+816,Pune Open,2025-03-15,50,S051,200 Free,Freestyle,200,132.42,OK
+817,Pune Open,2025-03-15,50,S052,100 Breast,Breaststroke,100,86.7,OK
+818,Pune Open,2025-03-15,50,S052,50 Fly,Butterfly,50,36.0,OK
+819,Pune Open,2025-03-15,50,S053,200 Free,Freestyle,200,161.86,OK
+820,Pune Open,2025-03-15,50,S053,50 Back,Backstroke,50,36.84,OK
+821,Pune Open,2025-03-15,50,S053,50 Breast,Breaststroke,50,45.29,OK
+822,Pune Open,2025-03-15,50,S054,100 Free,Freestyle,100,77.72,OK
+823,Pune Open,2025-03-15,50,S054,50 Fly,Butterfly,50,39.05,OK
+824,Pune Open,2025-03-15,50,S055,100 Breast,Breaststroke,100,84.17,OK
+825,Pune Open,2025-03-15,50,S056,50 Fly,Butterfly,50,36.56,OK
+826,Pune Open,2025-03-15,50,S056,100 Back,Backstroke,100,76.95,OK
+827,Pune Open,2025-03-15,50,S057,200 Free,Freestyle,200,133.6,OK
+828,Pune Open,2025-03-15,50,S058,100 Free,Freestyle,100,58.94,OK
+829,Pune Open,2025-03-15,50,S058,50 Free,Freestyle,50,26.23,OK
+830,Pune Open,2025-03-15,50,S059,50 Back,Backstroke,50,29.4,OK
+831,Pune Open,2025-03-15,50,S059,50 Fly,Butterfly,50,30.1,OK
+832,Pune Open,2025-03-15,50,S059,100 Breast,Breaststroke,100,71.7,OK
+833,Pune Open,2025-03-15,50,S060,50 Back,Backstroke,50,27.64,OK
+834,Pune Open,2025-03-15,50,S060,50 Free,Freestyle,50,23.32,OK
+835,Pune Open,2025-03-15,50,S060,200 IM,Individual Medley,200,133.5,OK
+836,Summer Splash,2025-05-10,25,S001,100 Back,Backstroke,100,59.48,OK
+837,Summer Splash,2025-05-10,25,S002,50 Free,Freestyle,50,27.79,OK
+838,Summer Splash,2025-05-10,25,S003,100 Breast,Breaststroke,100,67.22,OK
+839,Summer Splash,2025-05-10,25,S004,200 Free,Freestyle,200,134.77,OK
+840,Summer Splash,2025-05-10,25,S004,200 IM,Individual Medley,200,155.27,OK
+841,Summer Splash,2025-05-10,25,S005,100 Breast,Breaststroke,100,75.85,OK
+842,Summer Splash,2025-05-10,25,S006,200 IM,Individual Medley,200,163.46,OK
+843,Summer Splash,2025-05-10,25,S006,200 Free,Freestyle,200,143.77,OK
+844,Summer Splash,2025-05-10,25,S007,200 IM,Individual Medley,200,184.63,OK
+845,Summer Splash,2025-05-10,25,S008,50 Fly,Butterfly,50,37.95,OK
+846,Summer Splash,2025-05-10,25,S009,50 Breast,Breaststroke,50,48.6,OK
+847,Summer Splash,2025-05-10,25,S009,100 Back,Backstroke,100,88.22,OK
+848,Summer Splash,2025-05-10,25,S009,50 Free,Freestyle,50,34.83,OK
+849,Summer Splash,2025-05-10,25,S010,200 IM,Individual Medley,200,199.7,OK
+850,Summer Splash,2025-05-10,25,S010,50 Fly,Butterfly,50,41.34,OK
+851,Summer Splash,2025-05-10,25,S011,100 Breast,Breaststroke,100,69.52,OK
+852,Summer Splash,2025-05-10,25,S012,100 Breast,Breaststroke,100,85.56,OK
+853,Summer Splash,2025-05-10,25,S013,100 Free,Freestyle,100,64.2,OK
+854,Summer Splash,2025-05-10,25,S014,50 Fly,Butterfly,50,32.13,OK
+855,Summer Splash,2025-05-10,25,S015,200 Free,Freestyle,200,119.47,OK
+856,Summer Splash,2025-05-10,25,S016,200 IM,Individual Medley,200,164.55,OK
+857,Summer Splash,2025-05-10,25,S017,200 Free,Freestyle,200,154.0,OK
+858,Summer Splash,2025-05-10,25,S017,50 Breast,Breaststroke,50,41.02,OK
+859,Summer Splash,2025-05-10,25,S018,50 Breast,Breaststroke,50,37.75,OK
+860,Summer Splash,2025-05-10,25,S019,50 Fly,Butterfly,50,29.44,OK
+861,Summer Splash,2025-05-10,25,S020,50 Breast,Breaststroke,50,34.55,OK
+862,Summer Splash,2025-05-10,25,S021,200 IM,Individual Medley,200,156.12,OK
+863,Summer Splash,2025-05-10,25,S022,100 Breast,Breaststroke,100,88.0,OK
+864,Summer Splash,2025-05-10,25,S022,200 Free,Freestyle,200,156.33,OK
+865,Summer Splash,2025-05-10,25,S022,50 Back,Backstroke,50,36.56,OK
+866,Summer Splash,2025-05-10,25,S023,100 Free,Freestyle,100,67.96,OK
+867,Summer Splash,2025-05-10,25,S023,100 Back,Backstroke,100,75.06,OK
+868,Summer Splash,2025-05-10,25,S024,50 Fly,Butterfly,50,32.14,OK
+869,Summer Splash,2025-05-10,25,S024,100 Breast,Breaststroke,100,78.89,OK
+870,Summer Splash,2025-05-10,25,S025,50 Breast,Breaststroke,50,43.24,OK
+871,Summer Splash,2025-05-10,25,S026,50 Back,Backstroke,50,31.1,OK
+872,Summer Splash,2025-05-10,25,S026,200 IM,Individual Medley,200,150.56,OK
+873,Summer Splash,2025-05-10,25,S027,50 Fly,Butterfly,50,35.33,OK
+874,Summer Splash,2025-05-10,25,S027,50 Back,Backstroke,50,35.56,OK
+875,Summer Splash,2025-05-10,25,S027,200 IM,Individual Medley,200,161.82,OK
+876,Summer Splash,2025-05-10,25,S028,200 Free,Freestyle,200,141.0,OK
+877,Summer Splash,2025-05-10,25,S028,100 Breast,Breaststroke,100,85.12,OK
+878,Summer Splash,2025-05-10,25,S029,200 IM,Individual Medley,200,171.38,OK
+879,Summer Splash,2025-05-10,25,S030,50 Free,Freestyle,50,29.66,OK
+880,Summer Splash,2025-05-10,25,S031,100 Back,Backstroke,100,64.8,OK
+881,Summer Splash,2025-05-10,25,S031,100 Free,Freestyle,100,,DQ
+882,Summer Splash,2025-05-10,25,S031,200 Free,Freestyle,200,124.35,OK
+883,Summer Splash,2025-05-10,25,S032,100 Breast,Breaststroke,100,82.47,OK
+884,Summer Splash,2025-05-10,25,S032,50 Breast,Breaststroke,50,38.56,OK
+885,Summer Splash,2025-05-10,25,S032,50 Fly,Butterfly,50,34.86,OK
+886,Summer Splash,2025-05-10,25,S033,200 Free,Freestyle,200,124.71,OK
+887,Summer Splash,2025-05-10,25,S034,50 Back,Backstroke,50,38.69,OK
+888,Summer Splash,2025-05-10,25,S035,100 Back,Backstroke,100,79.63,OK
+889,Summer Splash,2025-05-10,25,S036,100 Back,Backstroke,100,86.27,OK
+890,Summer Splash,2025-05-10,25,S036,100 Free,Freestyle,100,76.89,OK
+891,Summer Splash,2025-05-10,25,S036,50 Fly,Butterfly,50,43.01,OK
+892,Summer Splash,2025-05-10,25,S037,50 Back,Backstroke,50,39.49,OK
+893,Summer Splash,2025-05-10,25,S038,50 Back,Backstroke,50,33.79,OK
+894,Summer Splash,2025-05-10,25,S038,200 Free,Freestyle,200,137.91,OK
+895,Summer Splash,2025-05-10,25,S039,100 Breast,Breaststroke,100,77.91,OK
+896,Summer Splash,2025-05-10,25,S040,100 Breast,Breaststroke,100,83.61,OK
+897,Summer Splash,2025-05-10,25,S040,50 Breast,Breaststroke,50,41.37,OK
+898,Summer Splash,2025-05-10,25,S040,200 IM,Individual Medley,200,165.15,OK
+899,Summer Splash,2025-05-10,25,S041,100 Back,Backstroke,100,73.57,OK
+900,Summer Splash,2025-05-10,25,S041,200 IM,Individual Medley,200,150.93,OK
+901,Summer Splash,2025-05-10,25,S042,100 Back,Backstroke,100,73.26,OK
+902,Summer Splash,2025-05-10,25,S043,100 Free,Freestyle,100,70.82,OK
+903,Summer Splash,2025-05-10,25,S043,50 Breast,Breaststroke,50,44.06,OK
+904,Summer Splash,2025-05-10,25,S044,50 Breast,Breaststroke,50,37.15,OK
+905,Summer Splash,2025-05-10,25,S044,100 Free,Freestyle,100,64.89,OK
+906,Summer Splash,2025-05-10,25,S044,100 Back,Backstroke,100,73.05,OK
+907,Summer Splash,2025-05-10,25,S045,200 Free,Freestyle,200,162.78,OK
+908,Summer Splash,2025-05-10,25,S045,50 Free,Freestyle,50,32.42,OK
+909,Summer Splash,2025-05-10,25,S046,200 IM,Individual Medley,200,169.72,OK
+910,Summer Splash,2025-05-10,25,S046,50 Free,Freestyle,50,32.06,OK
+911,Summer Splash,2025-05-10,25,S046,50 Breast,Breaststroke,50,40.52,OK
+912,Summer Splash,2025-05-10,25,S047,100 Back,Backstroke,100,78.96,OK
+913,Summer Splash,2025-05-10,25,S048,50 Free,Freestyle,50,33.55,OK
+914,Summer Splash,2025-05-10,25,S048,100 Breast,Breaststroke,100,96.64,OK
+915,Summer Splash,2025-05-10,25,S049,200 IM,Individual Medley,200,191.45,OK
+916,Summer Splash,2025-05-10,25,S050,100 Back,Backstroke,100,75.24,OK
+917,Summer Splash,2025-05-10,25,S051,50 Back,Backstroke,50,31.22,OK
+918,Summer Splash,2025-05-10,25,S051,100 Back,Backstroke,100,65.44,OK
+919,Summer Splash,2025-05-10,25,S051,50 Fly,Butterfly,50,30.89,OK
+920,Summer Splash,2025-05-10,25,S052,100 Breast,Breaststroke,100,87.16,OK
+921,Summer Splash,2025-05-10,25,S053,100 Back,Backstroke,100,84.14,OK
+922,Summer Splash,2025-05-10,25,S054,200 Free,Freestyle,200,163.33,OK
+923,Summer Splash,2025-05-10,25,S054,200 IM,Individual Medley,200,197.96,OK
+924,Summer Splash,2025-05-10,25,S054,50 Back,Backstroke,50,40.38,OK
+925,Summer Splash,2025-05-10,25,S055,100 Free,Freestyle,100,64.67,OK
+926,Summer Splash,2025-05-10,25,S055,200 IM,Individual Medley,200,157.86,OK
+927,Summer Splash,2025-05-10,25,S055,50 Free,Freestyle,50,30.61,OK
+928,Summer Splash,2025-05-10,25,S056,200 IM,Individual Medley,200,166.17,OK
+929,Summer Splash,2025-05-10,25,S056,100 Free,Freestyle,100,66.65,OK
+930,Summer Splash,2025-05-10,25,S056,50 Breast,Breaststroke,50,42.42,OK
+931,Summer Splash,2025-05-10,25,S057,100 Back,Backstroke,100,70.66,OK
+932,Summer Splash,2025-05-10,25,S058,100 Back,Backstroke,100,68.17,OK
+933,Summer Splash,2025-05-10,25,S058,200 IM,Individual Medley,200,,DQ
+934,Summer Splash,2025-05-10,25,S058,100 Free,Freestyle,100,57.12,OK
+935,Summer Splash,2025-05-10,25,S059,50 Back,Backstroke,50,29.74,OK
+936,Summer Splash,2025-05-10,25,S060,100 Breast,Breaststroke,100,69.81,OK
+387,State Qualifier,2024-08-24,50,S014,50 Free,Freestyle,50,28.6,OK
+42,District Winter Meet,2024-01-20,25,S023,200 Free,Freestyle,200,169.07,OK
+726,Pune Open,2025-03-15,50,S006,100 Back,Backstroke,100,72.85,OK
+606,District Winter Meet,2025-01-18,25,S006,100 Free,Freestyle,100,67.62,OK
+36,District Winter Meet,2024-01-20,25,S020,50 Back,Backstroke,50,33.12,OK
+330,Summer Splash,2024-05-11,25,S050,100 Back,Backstroke,100,79.94,OK

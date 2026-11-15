@@ -1,0 +1,2419 @@
+# scikit-learn: 100 exercises (hints and answers)
+
+_Generated from `tools/source/sklearn.ktx`. Don't edit this file; it gets rebuilt._
+
+
+## Level 1: Easy
+
+#### 1. Import scikit-learn and print its version. (The package is installed as `scikit-learn` but you import it as `sklearn`.) (★☆☆)
+
+`hint:` `import sklearn` then `sklearn.__version__`
+
+```python
+import sklearn
+print(sklearn.__version__)
+```
+
+#### 2. Load the built-in **iris** flower dataset with `load_iris()`. Print the shape of `iris.data` (the features X) and of `iris.target` (the labels y). (★☆☆)
+
+`hint:` `from sklearn.datasets import load_iris`; then `.shape`
+
+```python
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X = iris.data    # one row per flower, one column per measurement
+y = iris.target  # the species of each flower, as a number 0/1/2
+print(X.shape)   # (150, 4): 150 flowers, 4 features
+print(y.shape)   # (150,): one label per flower
+```
+
+#### 3. Print the feature names and the target names (species) of the iris dataset. Then print the first flower's 4 measurements and its species *name*. (★☆☆)
+
+`hint:` `iris.feature_names`, `iris.target_names`; use the number in `iris.target[0]` as an index into `target_names`
+
+```python
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+print(iris.feature_names)
+print(iris.target_names)
+print(iris.data[0])
+# target is a number; target_names turns it back into a word
+print(iris.target_names[iris.target[0]])
+```
+
+#### 4. Load iris as a pandas DataFrame with `load_iris(as_frame=True)`. Print the first 5 rows of `.frame` and count how many flowers there are of each class. (★☆☆)
+
+`hint:` `.frame.head()` and `value_counts()` on the `"target"` column
+
+```python
+from sklearn.datasets import load_iris
+
+iris = load_iris(as_frame=True)
+df = iris.frame            # features + a "target" column, all in one DataFrame
+print(df.head())
+print(df["target"].value_counts())  # 50 of each: a perfectly balanced dataset
+```
+
+#### 5. Load the **breast cancer** dataset as `X, y` in one line with `return_X_y=True`. Print the shapes and how many samples there are of each class. (In this dataset 0 = malignant, 1 = benign.) (★☆☆)
+
+`hint:` `load_breast_cancer(return_X_y=True)`; count classes with `np.bincount(y)`
+
+```python
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+
+X, y = load_breast_cancer(return_X_y=True)  # skip the Bunch, get the arrays directly
+print(X.shape, y.shape)  # 569 patients, 30 features
+print(np.bincount(y))    # [212 357]: 212 malignant (0), 357 benign (1)
+```
+
+#### 6. Load the **diabetes** dataset with `return_X_y=True`. Print the first 5 values of `y` and the min and max of `y`. In a comment, say whether this is a classification or a regression problem, and why. (★☆☆)
+
+`hint:` `load_diabetes`. Is `y` a small set of categories or any number on a scale?
+
+```python
+from sklearn.datasets import load_diabetes
+
+X, y = load_diabetes(return_X_y=True)
+print(y[:5])
+print(y.min(), y.max())
+# Regression: y is a number on a continuous scale (a disease-progression score),
+# not one of a few categories. Predicting a number = regression.
+```
+
+#### 7. Load `../data/student_marks.csv`. Build `X` from the columns `study_hours_per_week`, `attendance_pct`, `previous_cgpa`, and `y` from `final_marks`. Print the shapes of `X` and `y`. (★☆☆)
+
+`hint:` Double brackets `df[[...]]` give a 2-D DataFrame (X), single brackets give a 1-D Series (y)
+
+```python
+import pandas as pd
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "previous_cgpa"]]  # 2-D: rows x features
+y = df["final_marks"]                                                # 1-D: one target per row
+print(X.shape)  # (300, 3)
+print(y.shape)  # (300,)
+```
+
+#### 8. Split iris into a training set and a test set with `train_test_split`, keeping 25% for testing and `random_state=42`. Print the shapes of all four pieces. (★☆☆)
+
+`hint:` `from sklearn.model_selection import train_test_split`; it returns `X_train, X_test, y_train, y_test` in that order
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+X, y = load_iris(return_X_y=True)
+# random_state fixes the shuffle, so you get the same split every run
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+print(X_train.shape, X_test.shape)  # (112, 4) (38, 4)
+print(y_train.shape, y_test.shape)
+```
+
+#### 9. Split iris twice with `test_size=0.2, random_state=0`: once normally and once with `stratify=y`. For each, print how many test flowers are in each class. What does `stratify` do? (★☆☆)
+
+`hint:` `np.bincount(y_test)` counts each class
+
+```python
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+X, y = load_iris(return_X_y=True)
+_, _, _, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+print("normal:    ", np.bincount(y_test))   # uneven, by luck of the shuffle
+_, _, _, y_test = train_test_split(X, y, test_size=0.2, random_state=0, stratify=y)
+print("stratified:", np.bincount(y_test))   # [10 10 10]
+# stratify=y keeps the class proportions the same in train and test.
+# This matters a lot when one class is rare (like fraud).
+```
+
+#### 10. Train your first model: a `KNeighborsClassifier` on the iris training set (`test_size=0.25, random_state=42`). Predict the species of the first 5 test flowers and print them next to the true answers. (★☆☆)
+
+`hint:` `model = KNeighborsClassifier()`, then `model.fit(X_train, y_train)` and `model.predict(X_test[:5])`
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+model = KNeighborsClassifier()  # looks at the 5 most similar training flowers and takes a vote
+model.fit(X_train, y_train)     # "training": the model learns from examples with answers
+print("predicted:", model.predict(X_test[:5]))
+print("true:     ", y_test[:5])
+```
+
+#### 11. On the same iris split, train a `KNeighborsClassifier` and a `LogisticRegression(max_iter=1000)`. Print the test score of each with `.score(X_test, y_test)`. What does `.score` measure for a classifier? (★☆☆)
+
+`hint:` `from sklearn.linear_model import LogisticRegression`; `.score` on a classifier returns accuracy
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+for model in [KNeighborsClassifier(), LogisticRegression(max_iter=1000)]:
+    model.fit(X_train, y_train)
+    # for classifiers, .score = accuracy = share of test rows predicted correctly
+    print(type(model).__name__, model.score(X_test, y_test))
+```
+
+#### 12. Using student marks (X = study hours, attendance, previous CGPA; y = final marks), split 80/20 with `random_state=42` and train a `LinearRegression`. Print the test score, and print each coefficient next to its feature name, plus the intercept. (★☆☆)
+
+`hint:` `model.coef_`, `model.intercept_`; `zip(X.columns, model.coef_)`. For regression `.score` is R² (1 = perfect, 0 = no better than guessing the average)
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "previous_cgpa"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = LinearRegression().fit(X_train, y_train)  # .fit returns the model, so you can chain
+print("R2 on test:", round(model.score(X_test, y_test), 3))
+# each coefficient = how many marks the prediction goes up per +1 of that feature
+for name, c in zip(X.columns, model.coef_):
+    print(f"{name}: {c:.2f}")
+print("intercept:", round(model.intercept_, 2))
+```
+
+#### 13. Use the model from exercise 12 (retrain it on the full data this time) to predict the final marks of a new student who studies 15 hours a week, has 90% attendance and a previous CGPA of 8.0. (★☆☆)
+
+`hint:` Put the new student in a one-row DataFrame with the **same column names** as X
+
+```python
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+df = pd.read_csv("../data/student_marks.csv")
+cols = ["study_hours_per_week", "attendance_pct", "previous_cgpa"]
+model = LinearRegression().fit(df[cols], df["final_marks"])
+
+# predict always wants 2-D input (a table), even for one row
+new = pd.DataFrame([[15, 90, 8.0]], columns=cols)
+print(model.predict(new))
+```
+
+#### 14. Train a `KNeighborsClassifier` on breast cancer (`test_size=0.25, random_state=42, stratify=y`). Compute the accuracy twice: with `accuracy_score`, and by hand as the share of predictions equal to the truth. They should match. (★☆☆)
+
+`hint:` `from sklearn.metrics import accuracy_score`; by hand: `(y_pred == y_test).mean()`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
+y_pred = KNeighborsClassifier().fit(X_train, y_train).predict(X_test)
+
+print(accuracy_score(y_test, y_pred))
+print((y_pred == y_test).mean())  # True counts as 1, False as 0, so the mean = share correct
+```
+
+#### 15. For the same model as exercise 14, print the `confusion_matrix`. In comments, explain what each of the four numbers means here (0 = malignant, 1 = benign). (★☆☆)
+
+`hint:` `from sklearn.metrics import confusion_matrix`; rows = true class, columns = predicted class
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
+y_pred = KNeighborsClassifier().fit(X_train, y_train).predict(X_test)
+
+print(confusion_matrix(y_test, y_pred))
+# Row 0 = truly malignant: [correctly called malignant, wrongly called benign]
+# Row 1 = truly benign:    [wrongly called malignant, correctly called benign]
+# The diagonal (top-left, bottom-right) = correct predictions.
+```
+
+#### 16. Here are 10 true labels and 10 predictions for "is this fraud?" (1 = fraud). Print the confusion matrix, then unpack it into `tn, fp, fn, tp` and print each. (★☆☆)
+```python
+y_true = [0, 0, 0, 1, 0, 1, 0, 0, 1, 0]
+y_pred = [0, 1, 0, 1, 0, 0, 0, 0, 1, 1]
+```
+
+`hint:` `tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()`
+
+```python
+from sklearn.metrics import confusion_matrix
+
+y_true = [0, 0, 0, 1, 0, 1, 0, 0, 1, 0]
+y_pred = [0, 1, 0, 1, 0, 0, 0, 0, 1, 1]
+cm = confusion_matrix(y_true, y_pred)
+print(cm)
+tn, fp, fn, tp = cm.ravel()  # ravel flattens the 2x2 table row by row
+print("true negatives (normal, said normal):", tn)
+print("false positives (normal, said fraud = false alarm):", fp)
+print("false negatives (fraud, said normal = missed fraud):", fn)
+print("true positives (fraud, said fraud = caught):", tp)
+```
+
+#### 17. Load `../data/transactions.csv`. Print the number of transactions, the number of frauds, and the fraud rate in percent. (★☆☆)
+
+`hint:` `is_fraud` is 0/1, so `.sum()` counts frauds and `.mean()` gives the rate
+
+```python
+import pandas as pd
+
+t = pd.read_csv("../data/transactions.csv")
+print(len(t))
+print(t["is_fraud"].sum())                       # sum, not count: count would count every row
+print(round(t["is_fraud"].mean() * 100, 2), "%")  # about 1.9%
+```
+
+#### 18. A lazy "model" says *no transaction is ever fraud*. Make `y_pred` all zeros and print its accuracy on the whole transactions file. Then print how many frauds it caught. Why is accuracy misleading here? (★☆☆)
+
+`hint:` `np.zeros(len(t), dtype=int)`; caught frauds = rows where both truth and prediction are 1
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.metrics import accuracy_score
+
+t = pd.read_csv("../data/transactions.csv")
+y = t["is_fraud"]
+y_pred = np.zeros(len(t), dtype=int)  # "never fraud"
+
+print("accuracy:", accuracy_score(y, y_pred))         # about 0.98 - looks great!
+print("frauds caught:", ((y == 1) & (y_pred == 1)).sum())  # 0
+# Accuracy is high only because 98% of rows are normal. The model is useless for
+# the one job it has (finding fraud). With rare classes, never trust accuracy alone.
+```
+
+#### 19. Do exercise 18 the proper way: split transactions (X = `amount_eur` only, y = `is_fraud`, `test_size=0.25`, `stratify=y`, `random_state=42`) and fit a `DummyClassifier(strategy="most_frequent")`. Print its test accuracy. This is your **baseline**: any real model must beat it. (★☆☆)
+
+`hint:` `from sklearn.dummy import DummyClassifier`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.dummy import DummyClassifier
+
+t = pd.read_csv("../data/transactions.csv")
+X = t[["amount_eur"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+# a "model" that ignores X and always predicts the most common class (0)
+dummy = DummyClassifier(strategy="most_frequent").fit(X_train, y_train)
+print(dummy.score(X_test, y_test))  # ~0.981: the number to beat
+```
+
+#### 20. Using the labels from exercise 16, compute precision and recall with `precision_score` and `recall_score`. Then compute both by hand from `tp`, `fp` and `fn` and check they match. (★☆☆)
+
+`hint:` precision = tp / (tp + fp): of the alerts, how many were fraud? recall = tp / (tp + fn): of the frauds, how many did we catch?
+
+```python
+from sklearn.metrics import confusion_matrix, precision_score, recall_score
+
+y_true = [0, 0, 0, 1, 0, 1, 0, 0, 1, 0]
+y_pred = [0, 1, 0, 1, 0, 0, 0, 0, 1, 1]
+tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+
+print("precision:", precision_score(y_true, y_pred), tp / (tp + fp))  # 2 of 4 alerts were real fraud
+print("recall:   ", recall_score(y_true, y_pred), tp / (tp + fn))     # caught 2 of 3 frauds
+```
+
+#### 21. Still with the labels from exercise 16, compute the F1 score with `f1_score`. Check it against the formula `2 * p * r / (p + r)`. In a comment, say when F1 is useful. (★☆☆)
+
+`hint:` `from sklearn.metrics import f1_score`
+
+```python
+from sklearn.metrics import f1_score, precision_score, recall_score
+
+y_true = [0, 0, 0, 1, 0, 1, 0, 0, 1, 0]
+y_pred = [0, 1, 0, 1, 0, 0, 0, 0, 1, 1]
+p = precision_score(y_true, y_pred)
+r = recall_score(y_true, y_pred)
+print(f1_score(y_true, y_pred), 2 * p * r / (p + r))
+# F1 is one number that is only high when BOTH precision and recall are high.
+# Handy for comparing models on a rare class, where accuracy is useless.
+```
+
+#### 22. Print a `classification_report` for the breast cancer KNN model from exercise 14, using `target_names=["malignant", "benign"]`. (★☆☆)
+
+`hint:` `from sklearn.metrics import classification_report`; wrap it in `print()`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
+y_pred = KNeighborsClassifier().fit(X_train, y_train).predict(X_test)
+
+# one row per class with precision, recall, f1 and "support" (= how many true rows of that class)
+print(classification_report(y_test, y_pred, target_names=["malignant", "benign"]))
+```
+
+#### 23. Train a `LogisticRegression` on the transactions split from exercise 19 (X = `amount_eur` only). Print its test accuracy and its recall for fraud. Compare with the dummy baseline (~0.981). (★☆☆)
+
+`hint:` `recall_score(y_test, y_pred)` measures recall for class 1 (fraud) by default
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, recall_score
+
+t = pd.read_csv("../data/transactions.csv")
+X = t[["amount_eur"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+y_pred = LogisticRegression().fit(X_train, y_train).predict(X_test)
+print("accuracy:", accuracy_score(y_test, y_pred))
+print("fraud recall:", recall_score(y_test, y_pred))
+# Same accuracy as the dummy and (almost) no fraud caught: the model learned
+# that "always say normal" is the easiest way to be right 98% of the time.
+# We fix this in Part 6.
+```
+
+#### 24. Retrain the student marks `LinearRegression` from exercise 12. Compute the **mean absolute error (MAE)** on the test set. What does the number mean in plain words? (★☆☆)
+
+`hint:` `from sklearn.metrics import mean_absolute_error`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "previous_cgpa"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+y_pred = LinearRegression().fit(X_train, y_train).predict(X_test)
+
+mae = mean_absolute_error(y_test, y_pred)
+print(round(mae, 2))
+# On average, the prediction is this many marks away from the real final mark.
+```
+
+#### 25. For the same model, compute the **root mean squared error (RMSE)** with `root_mean_squared_error`. Why is RMSE usually bigger than MAE? (★☆☆)
+
+`hint:` `from sklearn.metrics import root_mean_squared_error`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, root_mean_squared_error
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "previous_cgpa"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+y_pred = LinearRegression().fit(X_train, y_train).predict(X_test)
+
+print("MAE: ", round(mean_absolute_error(y_test, y_pred), 2))
+print("RMSE:", round(root_mean_squared_error(y_test, y_pred), 2))
+# RMSE squares each error before averaging, so a few big misses count extra.
+# If RMSE is much bigger than MAE, the model has some large errors.
+```
+
+#### 26. For the same model, compute R² with `r2_score` and check it equals `model.score(X_test, y_test)`. (★☆☆)
+
+`hint:` `from sklearn.metrics import r2_score`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "previous_cgpa"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression().fit(X_train, y_train)
+
+print(r2_score(y_test, model.predict(X_test)))
+print(model.score(X_test, y_test))  # same: for regressors, .score is R2
+```
+
+#### 27. Make a regression baseline: `DummyRegressor(strategy="mean")` always predicts the average training mark. Compare its test MAE with the `LinearRegression` MAE on the same split. (★☆☆)
+
+`hint:` `from sklearn.dummy import DummyRegressor`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.dummy import DummyRegressor
+from sklearn.metrics import mean_absolute_error
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "previous_cgpa"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+for model in [DummyRegressor(strategy="mean"), LinearRegression()]:
+    y_pred = model.fit(X_train, y_train).predict(X_test)
+    print(type(model).__name__, round(mean_absolute_error(y_test, y_pred), 2))
+# The real model should be clearly better than "always guess the average".
+```
+
+#### 28. Train a `DecisionTreeClassifier(random_state=42)` on iris (`test_size=0.25, random_state=42`) and print its test accuracy. (★☆☆)
+
+`hint:` `from sklearn.tree import DecisionTreeClassifier`
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+# a decision tree learns a chain of yes/no questions like "petal length < 2.45?"
+tree = DecisionTreeClassifier(random_state=42).fit(X_train, y_train)
+print(tree.score(X_test, y_test))
+```
+
+#### 29. Train a `DecisionTreeClassifier(random_state=42)` with no depth limit on breast cancer (`test_size=0.25, stratify=y, random_state=42`). Print the **training** accuracy and the **test** accuracy. What does the gap tell you? (★☆☆)
+
+`hint:` Call `.score` on both `X_train, y_train` and `X_test, y_test`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+tree = DecisionTreeClassifier(random_state=42).fit(X_train, y_train)
+
+print("train:", tree.score(X_train, y_train))  # 1.0: it memorised every training row
+print("test: ", tree.score(X_test, y_test))    # lower: memorising is not the same as learning
+# A big train-test gap = overfitting. The model learned noise that does not
+# carry over to new data. Always judge a model on data it has not seen.
+```
+
+#### 30. On the same breast cancer split, loop over `max_depth` in `[1, 2, 3, 5, None]`. For each, print the train and test accuracy. Which depth looks best? (★☆☆)
+
+`hint:` `DecisionTreeClassifier(max_depth=d, random_state=42)`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+for d in [1, 2, 3, 5, None]:
+    tree = DecisionTreeClassifier(max_depth=d, random_state=42).fit(X_train, y_train)
+    print(d, round(tree.score(X_train, y_train), 3), round(tree.score(X_test, y_test), 3))
+# Shallow trees are too simple (underfit); unlimited trees memorise (overfit).
+# Pick the depth with the best TEST score, not the best train score.
+# (Later we will pick it with cross-validation instead of the test set.)
+```
+
+#### 31. Train a tree with `max_depth=2` on the full iris data and print its rules with `export_text`, using the real feature names. (★☆☆)
+
+`hint:` `from sklearn.tree import export_text`; `export_text(tree, feature_names=iris.feature_names)`
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier, export_text
+
+iris = load_iris()
+tree = DecisionTreeClassifier(max_depth=2, random_state=42).fit(iris.data, iris.target)
+# trees are easy to explain: you can read the exact questions they ask
+print(export_text(tree, feature_names=iris.feature_names))
+```
+
+#### 32. Train a `RandomForestClassifier(n_estimators=100, random_state=42)` on the breast cancer split and print train and test accuracy. Compare with the single tree from exercise 29. (★☆☆)
+
+`hint:` `from sklearn.ensemble import RandomForestClassifier`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+# a forest = 100 trees, each trained on a random sample of rows and features,
+# then they vote. Their individual mistakes partly cancel out.
+forest = RandomForestClassifier(n_estimators=100, random_state=42).fit(X_train, y_train)
+print("train:", forest.score(X_train, y_train))
+print("test: ", forest.score(X_test, y_test))  # usually better than one tree
+```
+
+#### 33. Compare four models on the same breast cancer split: `LogisticRegression(max_iter=5000)`, `KNeighborsClassifier()`, `DecisionTreeClassifier(random_state=42)`, `RandomForestClassifier(random_state=42)`. Store them in a dict `{name: model}` and print each test accuracy. (★☆☆)
+
+`hint:` Loop over `models.items()`; fit and score each on the **same** split so the comparison is fair
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+models = {
+    "logistic": LogisticRegression(max_iter=5000),
+    "knn": KNeighborsClassifier(),
+    "tree": DecisionTreeClassifier(random_state=42),
+    "forest": RandomForestClassifier(random_state=42),
+}
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    print(f"{name:10s} {model.score(X_test, y_test):.3f}")
+```
+
+#### 34. Train a `LogisticRegression(max_iter=5000)` on the breast cancer split. Print `predict_proba` for the first 5 test rows, rounded to 3 decimals, and print `model.classes_`. What do the two columns mean? (★☆☆)
+
+`hint:` `model.predict_proba(X_test[:5]).round(3)`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+model = LogisticRegression(max_iter=5000).fit(X_train, y_train)
+
+print(model.classes_)  # [0 1]: column order of predict_proba
+print(model.predict_proba(X_test[:5]).round(3))
+# Column 0 = how likely the model thinks "malignant" is, column 1 = "benign".
+# Each row adds up to 1.
+```
+
+#### 35. Show that `predict` is just "probability of class 1 is at least 0.5". Take column 1 of `predict_proba`, make your own predictions with `>= 0.5`, and check they equal `model.predict(X_test)` for every row. (★☆☆)
+
+`hint:` `proba = model.predict_proba(X_test)[:, 1]`; `(proba >= 0.5).astype(int)`
+
+```python
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+model = LogisticRegression(max_iter=5000).fit(X_train, y_train)
+
+proba = model.predict_proba(X_test)[:, 1]
+mine = (proba >= 0.5).astype(int)
+print(np.array_equal(mine, model.predict(X_test)))  # True
+# The 0.5 cut-off (the "threshold") is a choice. In Part 6 we move it for fraud.
+```
+
+#### 36. On the iris split (`test_size=0.25, random_state=42`), train `KNeighborsClassifier` with `n_neighbors` = 1, 5 and 25. Print train and test accuracy for each. Which one memorises the training data? (★☆☆)
+
+`hint:` `KNeighborsClassifier(n_neighbors=k)`
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+for k in [1, 5, 25]:
+    knn = KNeighborsClassifier(n_neighbors=k).fit(X_train, y_train)
+    print(k, round(knn.score(X_train, y_train), 3), round(knn.score(X_test, y_test), 3))
+# k=1: every training flower is its own nearest neighbour, so train accuracy is 1.0
+# (memorising). Bigger k = smoother, simpler model.
+```
+
+#### 37. On student marks (3 features as before, 80/20, `random_state=42`), compare the test MAE of `LinearRegression` and `DecisionTreeRegressor(max_depth=3, random_state=42)`. (★☆☆)
+
+`hint:` `from sklearn.tree import DecisionTreeRegressor`: same idea as the classifier, but each leaf predicts an average number
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_absolute_error
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "previous_cgpa"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+for model in [LinearRegression(), DecisionTreeRegressor(max_depth=3, random_state=42)]:
+    y_pred = model.fit(X_train, y_train).predict(X_test)
+    print(type(model).__name__, round(mean_absolute_error(y_test, y_pred), 2))
+```
+
+#### 38. On the diabetes dataset (`test_size=0.25, random_state=42`), compare the test R² of `LinearRegression` and `RandomForestRegressor(n_estimators=100, random_state=42)`. (★☆☆)
+
+`hint:` `from sklearn.ensemble import RandomForestRegressor`
+
+```python
+from sklearn.datasets import load_diabetes
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+
+X, y = load_diabetes(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+for model in [LinearRegression(), RandomForestRegressor(n_estimators=100, random_state=42)]:
+    model.fit(X_train, y_train)
+    print(type(model).__name__, round(model.score(X_test, y_test), 3))
+# A fancier model is not always better. Always compare against a simple one.
+```
+
+#### 39. Predict swim times. Load `../data/swim_results.csv`, keep only rows with `status == "OK"`, and use `distance_m` and `pool_length_m` as X and `time_sec` as y. Train a `LinearRegression` (80/20, `random_state=42`) and print the test MAE in seconds and the two coefficients. (★☆☆)
+
+`hint:` Filter with a boolean mask first: DQ rows have no time
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+
+r = pd.read_csv("../data/swim_results.csv")
+r = r[r["status"] == "OK"]  # DQ rows have time_sec = NaN, and models cannot handle NaN
+X = r[["distance_m", "pool_length_m"]]
+y = r["time_sec"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = LinearRegression().fit(X_train, y_train)
+print("MAE (s):", round(mean_absolute_error(y_test, model.predict(X_test)), 2))
+print(dict(zip(X.columns, model.coef_.round(3))))
+# The distance coefficient = extra seconds per extra metre. The error is still big
+# because the model knows nothing about the swimmer or the stroke.
+```
+
+#### 40. Build two simple fraud features with pandas: `amount_eur` and `online` (1 if `channel == "online"`, else 0). Train a `RandomForestClassifier(random_state=42)` (`test_size=0.25, stratify=y, random_state=42`) and print accuracy and fraud recall. (★☆☆)
+
+`hint:` `(t["channel"] == "online").astype(int)`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, recall_score
+
+t = pd.read_csv("../data/transactions.csv")
+X = pd.DataFrame({
+    "amount_eur": t["amount_eur"],
+    "online": (t["channel"] == "online").astype(int),  # True/False -> 1/0
+})
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+y_pred = RandomForestClassifier(random_state=42).fit(X_train, y_train).predict(X_test)
+print("accuracy:", accuracy_score(y_test, y_pred))
+print("fraud recall:", recall_score(y_test, y_pred))
+# Accuracy is even BELOW the dummy's 98% and no fraud is caught. Better models alone do not fix
+# a rare-class problem: we need better features AND imbalance handling (Parts 6 and 8).
+```
+
+
+## Level 2: Medium
+
+#### 41. Scale a small array with `StandardScaler`. Print the scaled array, and the scaler's learned `mean_` and `scale_`. Check that each scaled column now has mean 0 and standard deviation 1. (★★☆)
+```python
+X = np.array([[10, 200], [20, 400], [30, 600], [40, 800]])
+```
+
+`hint:` `from sklearn.preprocessing import StandardScaler`; `fit_transform`, then `.mean(axis=0)` and `.std(axis=0)`
+
+```python
+import numpy as np
+from sklearn.preprocessing import StandardScaler
+
+X = np.array([[10, 200], [20, 400], [30, 600], [40, 800]])
+scaler = StandardScaler()
+Xs = scaler.fit_transform(X)  # fit = learn mean and std of each column; transform = apply
+print(Xs)
+print(scaler.mean_, scaler.scale_)  # what it learned
+print(Xs.mean(axis=0).round(6), Xs.std(axis=0))  # [0 0] and [1 1]
+# Both columns are now on the same scale, even though one was 20x bigger.
+```
+
+#### 42. Split breast cancer (`test_size=0.25, stratify=y, random_state=42`). Fit a `StandardScaler` on `X_train` only, then transform both sets. Print the mean of the first column in scaled train and scaled test. Why is the test mean not exactly 0, and why is that correct? (★★☆)
+
+`hint:` `scaler.fit(X_train)` then `scaler.transform(X_test)`: never `fit` on test
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+scaler = StandardScaler().fit(X_train)  # learn mean/std from TRAINING data only
+X_train_s = scaler.transform(X_train)
+X_test_s = scaler.transform(X_test)     # use the training mean/std on test
+print(round(X_train_s[:, 0].mean(), 4))  # 0
+print(round(X_test_s[:, 0].mean(), 4))   # close to 0, but not 0
+# The test set stands in for future data you have not seen yet. If you fit the
+# scaler on it, information from the "future" leaks into training.
+```
+
+#### 43. KNN measures distance between rows, so big-number features dominate. On the breast cancer split, compare KNN test accuracy **without** scaling and **with** a `StandardScaler` fitted on train. (★★☆)
+
+`hint:` Fit the scaler on train, transform both, then train KNN on the scaled data
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+raw = KNeighborsClassifier().fit(X_train, y_train)
+print("no scaling:  ", round(raw.score(X_test, y_test), 3))
+
+scaler = StandardScaler().fit(X_train)
+scaled = KNeighborsClassifier().fit(scaler.transform(X_train), y_train)
+print("with scaling:", round(scaled.score(scaler.transform(X_test), y_test), 3))
+# Without scaling, "area" (values in the 1000s) swamps features measured in 0.01s.
+# Trees and forests do not need scaling; KNN and logistic regression do.
+```
+
+#### 44. In student marks, `sleep_hours` has missing values. Use `SimpleImputer(strategy="median")` to fill them. Print the number of missing values before and after, and the value the imputer learned. (★★☆)
+
+`hint:` `from sklearn.impute import SimpleImputer`; it needs 2-D input, so use `df[["sleep_hours"]]`; learned value is in `.statistics_`
+
+```python
+import pandas as pd
+from sklearn.impute import SimpleImputer
+
+df = pd.read_csv("../data/student_marks.csv")
+print("missing before:", df["sleep_hours"].isna().sum())
+
+imp = SimpleImputer(strategy="median")  # median is not pulled around by extreme values
+filled = imp.fit_transform(df[["sleep_hours"]])
+print("learned median:", imp.statistics_)
+print("missing after:", pd.isna(filled).sum())
+```
+
+#### 45. In transactions, `merchant_category` has 30 missing values. Fill them with the most common category using `SimpleImputer(strategy="most_frequent")`. Print which value it used. (★★☆)
+
+`hint:` `most_frequent` also works on text columns
+
+```python
+import pandas as pd
+from sklearn.impute import SimpleImputer
+
+t = pd.read_csv("../data/transactions.csv")
+imp = SimpleImputer(strategy="most_frequent")
+filled = imp.fit_transform(t[["merchant_category"]])
+print(imp.statistics_)  # ['groceries']
+print(pd.isna(filled).sum())  # 0
+# Another option is a separate "missing" category: sometimes the fact that a
+# value is missing is itself a useful clue.
+```
+
+#### 46. One-hot encode the `channel` column of transactions with `OneHotEncoder(sparse_output=False)`. Print the column names it creates (`get_feature_names_out()`) and the first 5 encoded rows. (★★☆)
+
+`hint:` `from sklearn.preprocessing import OneHotEncoder`; input must be 2-D: `t[["channel"]]`
+
+```python
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
+
+t = pd.read_csv("../data/transactions.csv")
+enc = OneHotEncoder(sparse_output=False)  # sparse_output=False gives a normal array you can print
+encoded = enc.fit_transform(t[["channel"]])
+print(enc.get_feature_names_out())
+print(t["channel"].head().tolist())
+print(encoded[:5])
+# Models need numbers. One-hot = one 0/1 column per category, so "online" is not
+# treated as bigger or smaller than "in_store".
+```
+
+#### 47. Fit a `OneHotEncoder` on countries `["NL", "DE", "NL", "BE"]`, then transform `["NL", "US"]`. First try it with default settings (it raises an error, catch it with `try/except` and print the message), then with `handle_unknown="ignore"`. (★★☆)
+
+`hint:` Put each list in a DataFrame with one column `"country"`; `handle_unknown="ignore"` turns an unseen category into all zeros
+
+```python
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
+
+train = pd.DataFrame({"country": ["NL", "DE", "NL", "BE"]})
+new = pd.DataFrame({"country": ["NL", "US"]})
+
+enc = OneHotEncoder(sparse_output=False).fit(train)
+try:
+    enc.transform(new)
+except ValueError as e:
+    print("error:", e)
+
+enc = OneHotEncoder(sparse_output=False, handle_unknown="ignore").fit(train)
+print(enc.get_feature_names_out())
+print(enc.transform(new))  # US -> [0 0 0]: "none of the countries I know"
+# In production, new categories WILL appear. "ignore" keeps the model running.
+```
+
+#### 48. Why use `OneHotEncoder` instead of `pd.get_dummies`? Run `pd.get_dummies` separately on a train and a test DataFrame of channels, and print both column lists. Then show that `OneHotEncoder` fitted on train gives the same columns for test. (★★☆)
+```python
+train = pd.DataFrame({"channel": ["online", "in_store", "contactless", "online"]})
+test = pd.DataFrame({"channel": ["online", "online"]})
+```
+
+`hint:` The encoder *remembers* the categories it saw during `fit`; `get_dummies` only sees what is in front of it
+
+```python
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
+
+train = pd.DataFrame({"channel": ["online", "in_store", "contactless", "online"]})
+test = pd.DataFrame({"channel": ["online", "online"]})
+
+print(pd.get_dummies(train).columns.tolist())  # 3 columns
+print(pd.get_dummies(test).columns.tolist())   # 1 column: shape mismatch, model breaks
+
+enc = OneHotEncoder(sparse_output=False, handle_unknown="ignore").fit(train)
+print(enc.transform(test))  # still 3 columns, in the same order as training
+```
+
+#### 49. Use a `ColumnTransformer` on student marks to: scale `study_hours_per_week`, `attendance_pct`, `previous_cgpa`; median-impute `sleep_hours`; and one-hot encode `favourite_subject`. Fit it on the whole DataFrame and print the output shape and the output column names. (★★☆)
+
+`hint:` `from sklearn.compose import ColumnTransformer`; give a list of `(name, transformer, columns)` tuples
+
+```python
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+
+df = pd.read_csv("../data/student_marks.csv")
+ct = ColumnTransformer([
+    ("scale", StandardScaler(), ["study_hours_per_week", "attendance_pct", "previous_cgpa"]),
+    ("impute", SimpleImputer(strategy="median"), ["sleep_hours"]),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"), ["favourite_subject"]),
+])
+# each column group gets its own treatment; columns not listed are dropped
+out = ct.fit_transform(df)
+print(out.shape)  # (300, 9): 3 scaled + 1 imputed + 5 subjects
+print(ct.get_feature_names_out())
+```
+
+#### 50. Build a `ColumnTransformer` for transactions: scale `amount_eur` and one-hot encode `merchant_category`, `channel`, `country`. First replace missing `merchant_category` with the text `"missing"` using pandas. Print the output shape. (★★☆)
+
+`hint:` `t["merchant_category"].fillna("missing")`
+
+```python
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+
+t = pd.read_csv("../data/transactions.csv")
+t["merchant_category"] = t["merchant_category"].fillna("missing")  # "missing" becomes its own category
+
+ct = ColumnTransformer([
+    ("num", StandardScaler(), ["amount_eur"]),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), ["merchant_category", "channel", "country"]),
+])
+out = ct.fit_transform(t)
+print(out.shape)  # (6000, 21): 1 + 10 categories + 3 channels + 7 countries
+```
+
+#### 51. Repeat the student marks `ColumnTransformer` with only the scaling step for `study_hours_per_week` and `attendance_pct`, but set `remainder="passthrough"` for `part_time_job` (pass in only these three columns). Print the output names. What does `remainder` control? (★★☆)
+
+`hint:` `ColumnTransformer([...], remainder="passthrough")`
+
+```python
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df[["study_hours_per_week", "attendance_pct", "part_time_job"]]
+
+ct = ColumnTransformer(
+    [("scale", StandardScaler(), ["study_hours_per_week", "attendance_pct"])],
+    remainder="passthrough",  # keep unlisted columns as they are (default "drop" throws them away)
+)
+ct.fit(X)
+print(ct.get_feature_names_out())  # part_time_job kept, prefixed with "remainder__"
+print(ct.transform(X)[:3])
+```
+
+#### 52. Everyone in this file passed, so make a new target: `distinction = (final_marks >= 90)`. Split student marks 80/20 (`stratify=y, random_state=42`). Fit the `ColumnTransformer` from exercise 49 on the training set only, transform both sets, train a `LogisticRegression`, and print the test accuracy. (★★☆)
+
+`hint:` `ct.fit_transform(X_train)`, then `ct.transform(X_test)`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df.drop(columns=["student_id", "final_marks", "passed"])  # never give the model the answer
+y = (df["final_marks"] >= 90).astype(int)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+
+ct = ColumnTransformer([
+    ("scale", StandardScaler(), ["study_hours_per_week", "attendance_pct", "previous_cgpa"]),
+    ("impute", SimpleImputer(strategy="median"), ["sleep_hours"]),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"), ["favourite_subject"]),
+])
+X_train_t = ct.fit_transform(X_train)  # learn from train only
+X_test_t = ct.transform(X_test)        # reuse what was learned
+model = LogisticRegression().fit(X_train_t, y_train)
+print(round(model.score(X_test_t, y_test), 3))
+# It works, but it is easy to forget a step. A Pipeline (next part) bundles all of this.
+```
+
+#### 53. Build a pipeline with `make_pipeline(StandardScaler(), KNeighborsClassifier())`. Fit it on the breast cancer training set (`test_size=0.25, stratify=y, random_state=42`) and print the test accuracy. Compare with exercise 43. (★★☆)
+
+`hint:` `from sklearn.pipeline import make_pipeline`; a pipeline has `.fit`, `.predict`, `.score` like any model
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+pipe = make_pipeline(StandardScaler(), KNeighborsClassifier())
+pipe.fit(X_train, y_train)          # scaler is fitted on train, then KNN on the scaled train
+print(pipe.score(X_test, y_test))   # test is scaled with the TRAIN numbers automatically
+```
+
+#### 54. Build the same thing with `Pipeline([("scaler", ...), ("knn", ...)])` so the steps have your own names. Print `pipe.named_steps`, then change the number of neighbours to 10 with `set_params(knn__n_neighbors=10)`, refit and print the test accuracy. (★★☆)
+
+`hint:` `from sklearn.pipeline import Pipeline`; step name + two underscores + parameter name
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+pipe = Pipeline([("scaler", StandardScaler()), ("knn", KNeighborsClassifier())])
+print(pipe.named_steps)
+pipe.set_params(knn__n_neighbors=10)  # "knn__n_neighbors" = parameter n_neighbors of step "knn"
+pipe.fit(X_train, y_train)
+print(pipe.score(X_test, y_test))
+```
+
+#### 55. Redo exercise 52 as **one** pipeline: `ColumnTransformer` + `LogisticRegression`. Fit on train, print test accuracy, then predict the distinction probability for this new student: (★★☆)
+```python
+new = pd.DataFrame([{"study_hours_per_week": 18, "attendance_pct": 92, "sleep_hours": 7.5,
+                     "previous_cgpa": 8.4, "part_time_job": 0, "favourite_subject": "Python"}])
+```
+
+`hint:` `make_pipeline(ct, LogisticRegression())`; raw DataFrame in, prediction out
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+
+df = pd.read_csv("../data/student_marks.csv")
+X = df.drop(columns=["student_id", "final_marks", "passed"])
+y = (df["final_marks"] >= 90).astype(int)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+
+ct = ColumnTransformer([
+    ("scale", StandardScaler(), ["study_hours_per_week", "attendance_pct", "previous_cgpa"]),
+    ("impute", SimpleImputer(strategy="median"), ["sleep_hours"]),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"), ["favourite_subject"]),
+])
+pipe = make_pipeline(ct, LogisticRegression())
+pipe.fit(X_train, y_train)
+print("test accuracy:", round(pipe.score(X_test, y_test), 3))
+
+new = pd.DataFrame([{"study_hours_per_week": 18, "attendance_pct": 92, "sleep_hours": 7.5,
+                     "previous_cgpa": 8.4, "part_time_job": 0, "favourite_subject": "Python"}])
+print("P(distinction):", pipe.predict_proba(new)[:, 1].round(3))  # all preprocessing happens inside
+```
+
+#### 56. A column can need two steps (first impute, then encode). Make a small pipeline `make_pipeline(SimpleImputer(strategy="most_frequent"), OneHotEncoder(handle_unknown="ignore"))` and use it as the transformer for `merchant_category` inside a `ColumnTransformer` (scale `amount_eur` too). Fit on transactions and print the output shape. (★★☆)
+
+`hint:` A pipeline can be used anywhere a transformer is expected, including inside a `ColumnTransformer`
+
+```python
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import make_pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+t = pd.read_csv("../data/transactions.csv")
+cat_steps = make_pipeline(SimpleImputer(strategy="most_frequent"),   # step 1: fill the gaps
+                          OneHotEncoder(handle_unknown="ignore"))    # step 2: then encode
+ct = ColumnTransformer([
+    ("num", StandardScaler(), ["amount_eur"]),
+    ("cat", cat_steps, ["merchant_category"]),
+])
+print(ct.fit_transform(t).shape)  # (6000, 10): 1 amount + 9 categories (no "missing" now)
+```
+
+#### 57. Use `cross_val_score` with `cv=5` on iris with a `KNeighborsClassifier`. Print the 5 scores, their mean and their standard deviation. (★★☆)
+
+`hint:` `from sklearn.model_selection import cross_val_score`; it returns an array of scores
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_iris(return_X_y=True)
+# 5-fold CV: split into 5 parts; train on 4, test on the 5th; repeat so each part is tested once
+scores = cross_val_score(KNeighborsClassifier(), X, y, cv=5)
+print(scores)
+print(round(scores.mean(), 3), round(scores.std(), 3))
+# The mean is a steadier estimate than one split; the std shows how much it wobbles.
+```
+
+#### 58. Why cross-validate? Split breast cancer 5 times with `random_state` 0 to 4 (`test_size=0.25`), train a `DecisionTreeClassifier(random_state=42)` each time, and print the 5 test accuracies. (★★☆)
+
+`hint:` Loop over `range(5)` and pass the loop variable as `random_state` to `train_test_split`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+for seed in range(5):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=seed)
+    tree = DecisionTreeClassifier(random_state=42).fit(X_train, y_train)
+    print(seed, round(tree.score(X_test, y_test), 3))
+# Same model, same data, different luck of the split -> scores move by several points.
+# One split can fool you. Cross-validation averages over several.
+```
+
+#### 59. Iris rows are sorted by species (all 0s, then 1s, then 2s). Run `cross_val_score` on a `LogisticRegression(max_iter=1000)` with `cv=KFold(n_splits=3)` (no shuffle), then with `KFold(n_splits=3, shuffle=True, random_state=42)`. Explain the first result. (★★☆)
+
+`hint:` `from sklearn.model_selection import KFold`
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import cross_val_score, KFold
+from sklearn.linear_model import LogisticRegression
+
+X, y = load_iris(return_X_y=True)
+model = LogisticRegression(max_iter=1000)
+
+print(cross_val_score(model, X, y, cv=KFold(n_splits=3)))
+# [0 0 0]: each fold holds out one whole species. The model never saw that species
+# in training, so it cannot predict it.
+print(cross_val_score(model, X, y, cv=KFold(n_splits=3, shuffle=True, random_state=42)))
+# Shuffling mixes the classes, so every fold looks like the full data.
+```
+
+#### 60. For transactions, count the frauds in each test fold of `KFold(n_splits=5, shuffle=True, random_state=1)` and of `StratifiedKFold(n_splits=5, shuffle=True, random_state=1)`. Which gives more even folds? (★★☆)
+
+`hint:` `for train_idx, test_idx in cv.split(X, y):` then `y.iloc[test_idx].sum()`
+
+```python
+import pandas as pd
+from sklearn.model_selection import KFold, StratifiedKFold
+
+t = pd.read_csv("../data/transactions.csv")
+X = t[["amount_eur"]]
+y = t["is_fraud"]
+
+for cv in [KFold(n_splits=5, shuffle=True, random_state=1),
+           StratifiedKFold(n_splits=5, shuffle=True, random_state=1)]:
+    counts = [y.iloc[test_idx].sum() for train_idx, test_idx in cv.split(X, y)]
+    print(type(cv).__name__, counts)
+# StratifiedKFold puts (almost) the same number of frauds in each fold.
+# With rare classes, uneven folds make scores jump around.
+# Tip: for classifiers, cross_val_score(cv=5) already uses StratifiedKFold.
+```
+
+#### 61. Score a fraud model with cross-validation using **recall**, not accuracy. Features: `amount_eur` and `online` (as in exercise 40). Model: `make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced"))`. Use `StratifiedKFold(5, shuffle=True, random_state=42)` and print the recall per fold and the mean. (`class_weight` is explained in Part 6: for now, it makes the model take fraud seriously.) (★★☆)
+
+`hint:` `cross_val_score(pipe, X, y, cv=cv, scoring="recall")`
+
+```python
+import pandas as pd
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+t = pd.read_csv("../data/transactions.csv")
+X = pd.DataFrame({"amount_eur": t["amount_eur"], "online": (t["channel"] == "online").astype(int)})
+y = t["is_fraud"]
+
+pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced"))
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+scores = cross_val_score(pipe, X, y, cv=cv, scoring="recall")  # the metric you care about
+print(scores.round(3), round(scores.mean(), 3))
+```
+
+#### 62. Use `GridSearchCV` to choose `n_neighbors` from `[1, 3, 5, 7, 9, 15]` for a `make_pipeline(StandardScaler(), KNeighborsClassifier())` on the breast cancer **training** set (`cv=5`). Print `best_params_` and `best_score_`. (★★☆)
+
+`hint:` `from sklearn.model_selection import GridSearchCV`; with `make_pipeline` the step name is the class name in lowercase: `kneighborsclassifier__n_neighbors`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+pipe = make_pipeline(StandardScaler(), KNeighborsClassifier())
+grid = {"kneighborsclassifier__n_neighbors": [1, 3, 5, 7, 9, 15]}
+search = GridSearchCV(pipe, grid, cv=5)  # tries every value with 5-fold CV on the training set
+search.fit(X_train, y_train)
+print(search.best_params_)
+print(round(search.best_score_, 3))  # average CV accuracy of the best setting
+```
+
+#### 63. Grid-search a `DecisionTreeClassifier(random_state=42)` on the breast cancer training set over `max_depth` in `[2, 3, 4, 6]` and `min_samples_leaf` in `[1, 5, 10]` (`cv=5`). Print the best parameters, then score `best_estimator_` **once** on the test set. (★★☆)
+
+`hint:` The grid has 4 x 3 = 12 combinations; `search.best_estimator_` is already refitted on all training data
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+grid = {"max_depth": [2, 3, 4, 6], "min_samples_leaf": [1, 5, 10]}
+search = GridSearchCV(DecisionTreeClassifier(random_state=42), grid, cv=5).fit(X_train, y_train)
+print(search.best_params_, round(search.best_score_, 3))
+# The test set was not used to choose anything, so this is an honest final score.
+print("test:", round(search.best_estimator_.score(X_test, y_test), 3))
+```
+
+#### 64. **Leakage demo.** Make pure noise: `X = rng.normal(size=(100, 2000))` and random labels `y = rng.integers(0, 2, 100)` with `rng = np.random.default_rng(42)`. There is nothing to learn, so honest accuracy should be about 0.5. (★★☆)
+(a) Pick the 20 "best" columns with `SelectKBest(k=20)` on **all** the data, then cross-validate a `LogisticRegression` on those columns.
+(b) Put `SelectKBest` **inside** a pipeline and cross-validate that. Compare.
+
+`hint:` `from sklearn.feature_selection import SelectKBest`: it keeps the k columns most related to y
+
+```python
+import numpy as np
+from sklearn.feature_selection import SelectKBest
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+from sklearn.pipeline import make_pipeline
+
+rng = np.random.default_rng(42)
+X = rng.normal(size=(100, 2000))
+y = rng.integers(0, 2, 100)
+
+# (a) WRONG: the selector looked at ALL labels, including the rows later used for testing
+X_sel = SelectKBest(k=20).fit_transform(X, y)
+print("leaky:", cross_val_score(LogisticRegression(), X_sel, y, cv=5).mean())  # way above 0.5!
+
+# (b) RIGHT: selection is redone inside each fold, using only that fold's training rows
+pipe = make_pipeline(SelectKBest(k=20), LogisticRegression())
+print("honest:", cross_val_score(pipe, X, y, cv=5).mean())  # about 0.5, the truth
+# Leakage = information from the test rows sneaking into training. Every step that
+# learns from data (scaling, imputing, selecting) belongs inside the pipeline.
+```
+
+#### 65. From now on, use these fraud features (copy this block): (★★☆)
+```python
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+```
+Split (`test_size=0.25, stratify=y, random_state=42`). Train `make_pipeline(StandardScaler(), LogisticRegression())` with and without `class_weight="balanced"`. Print accuracy and fraud recall for both.
+
+`hint:` `LogisticRegression(class_weight="balanced")` makes each fraud count about 50x more during training
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, recall_score
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+for cw in [None, "balanced"]:
+    pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight=cw)).fit(X_train, y_train)
+    y_pred = pipe.predict(X_test)
+    print(cw, "accuracy:", round(accuracy_score(y_test, y_pred), 3), "recall:", round(recall_score(y_test, y_pred), 3))
+# Without weights the model ignores fraud (recall 0). "balanced" makes the rare class
+# count as much in total as the common one: recall jumps, accuracy drops. That trade is
+# usually worth it in fraud work.
+```
+
+#### 66. For the two models in exercise 65, print the confusion matrix of each. How many extra false alarms did the balanced model raise to catch its frauds? (★★☆)
+
+`hint:` `confusion_matrix(y_test, y_pred)`; false alarms are top-right, caught frauds bottom-right
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+for cw in [None, "balanced"]:
+    pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight=cw)).fit(X_train, y_train)
+    tn, fp, fn, tp = confusion_matrix(y_test, pipe.predict(X_test)).ravel()
+    print(f"{cw}: caught {tp} of {tp + fn} frauds, false alarms {fp}")
+# Catching fraud costs false alarms (customers whose card gets blocked by mistake).
+# A bank chooses the balance; the model just gives the options.
+```
+
+#### 67. Same features and split as exercise 65. Train `RandomForestClassifier(n_estimators=200, min_samples_leaf=30, class_weight="balanced", random_state=42)` and print precision and recall for fraud. Compare with the balanced logistic regression. (★★☆)
+
+`hint:` `min_samples_leaf=30` stops trees from making tiny leaves that memorise single frauds
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import precision_score, recall_score
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+models = {
+    "forest": RandomForestClassifier(n_estimators=200, min_samples_leaf=30,
+                                     class_weight="balanced", random_state=42),
+    "logistic": make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")),
+}
+for name, m in models.items():
+    y_pred = m.fit(X_train, y_train).predict(X_test)
+    print(name, "precision:", round(precision_score(y_test, y_pred), 3),
+          "recall:", round(recall_score(y_test, y_pred), 3))
+# On this data the simple model holds its own. Fancier is not automatically better.
+```
+
+#### 68. Use the balanced logistic regression from exercise 65. Instead of `predict`, take the fraud probability and try thresholds `0.3, 0.5, 0.7`. For each, print the number of alerts, precision and recall. (★★☆)
+
+`hint:` `proba = pipe.predict_proba(X_test)[:, 1]`; `y_pred = (proba >= thr).astype(int)`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import precision_score, recall_score
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")).fit(X_train, y_train)
+proba = pipe.predict_proba(X_test)[:, 1]
+for thr in [0.3, 0.5, 0.7]:
+    y_pred = (proba >= thr).astype(int)
+    print(thr, "alerts:", y_pred.sum(),
+          "precision:", round(precision_score(y_test, y_pred, zero_division=0), 3),
+          "recall:", round(recall_score(y_test, y_pred), 3))
+# Lower threshold = more alerts = higher recall, lower precision. Higher = the opposite.
+```
+
+#### 69. Find the highest threshold that still catches at least 80% of fraud on the test set of exercise 68, using `precision_recall_curve`. Print the threshold, its precision and its recall. (In Part 8 you will do this properly on a separate validation set.) (★★☆)
+
+`hint:` `precision, recall, thresholds = precision_recall_curve(y_test, proba)`; `precision` and `recall` have one more element than `thresholds`, so drop the last one
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import precision_recall_curve
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")).fit(X_train, y_train)
+proba = pipe.predict_proba(X_test)[:, 1]
+
+precision, recall, thresholds = precision_recall_curve(y_test, proba)
+precision, recall = precision[:-1], recall[:-1]  # line them up with thresholds
+ok = np.where(recall >= 0.8)[0]                  # positions that catch at least 80%
+i = ok[-1]                                       # thresholds go up, so the last one is the highest
+print("threshold:", round(thresholds[i], 3))
+print("precision:", round(precision[i], 3), "recall:", round(recall[i], 3))
+# Catching 80% of fraud here means most alerts are false alarms. That is normal for
+# weak features; better features (Part 8) raise precision.
+```
+
+#### 70. Compute the **ROC AUC** of the balanced logistic regression (exercise 65) with `roc_auc_score` on the fraud probabilities. Also compute it for random scores `rng.random(len(y_test))` (`rng = np.random.default_rng(42)`). What does each number mean? (★★☆)
+
+`hint:` `from sklearn.metrics import roc_auc_score`; pass probabilities, not 0/1 predictions
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")).fit(X_train, y_train)
+proba = pipe.predict_proba(X_test)[:, 1]
+
+rng = np.random.default_rng(42)
+print("model :", round(roc_auc_score(y_test, proba), 3))
+print("random:", round(roc_auc_score(y_test, rng.random(len(y_test))), 3))  # about 0.5
+# ROC AUC = if you pick one random fraud and one random normal transaction, the chance
+# the model gives the fraud the higher score. 0.5 = coin flip, 1.0 = perfect ranking.
+```
+
+#### 71. For the same model, compute **average precision** (PR AUC) with `average_precision_score`. Compare it with the fraud rate in `y_test`, which is what random scores would get. Why does it look much worse than the ROC AUC? (★★☆)
+
+`hint:` `from sklearn.metrics import average_precision_score`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score, roc_auc_score
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")).fit(X_train, y_train)
+proba = pipe.predict_proba(X_test)[:, 1]
+
+print("ROC AUC:          ", round(roc_auc_score(y_test, proba), 3))
+print("average precision:", round(average_precision_score(y_test, proba), 3))
+print("random baseline:  ", round(y_test.mean(), 3))
+# Average precision = average precision of your alerts as you move the threshold to
+# catch more and more fraud. It focuses on the rare class only. ROC AUC also rewards
+# correctly ranking the thousands of easy normal rows, so it looks rosier.
+# For rare-event problems like fraud, report average precision (and compare it with
+# the fraud rate, not with 0.5).
+```
+
+#### 72. Plot the precision-recall curve of the balanced logistic regression with `PrecisionRecallDisplay.from_estimator(pipe, X_test, y_test)`. Save it to `outputs/pr_curve.png`. (★★☆)
+
+`hint:` `from sklearn.metrics import PrecisionRecallDisplay`; `plt.savefig(...)` after `os.makedirs("outputs", exist_ok=True)`
+
+```python
+import os
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import PrecisionRecallDisplay
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")).fit(X_train, y_train)
+
+# each point on the curve is one threshold: x = recall, y = precision
+PrecisionRecallDisplay.from_estimator(pipe, X_test, y_test)
+plt.title("Fraud model: precision vs recall")
+os.makedirs("outputs", exist_ok=True)
+plt.savefig("outputs/pr_curve.png")
+plt.show()
+print("saved outputs/pr_curve.png")
+```
+
+#### 73. Train the random forest from exercise 67 and print its `feature_importances_` as a pandas Series with feature names, sorted from most to least important. (★★☆)
+
+`hint:` `pd.Series(forest.feature_importances_, index=X.columns).sort_values(ascending=False)`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+forest = RandomForestClassifier(n_estimators=200, min_samples_leaf=30,
+                                class_weight="balanced", random_state=42).fit(X_train, y_train)
+imp = pd.Series(forest.feature_importances_, index=X.columns).sort_values(ascending=False)
+print(imp.round(3))
+# This "built-in" importance = how much each feature was used to split the trees.
+# Warning: it favours features with many different values (amount, hour) over 0/1 flags.
+```
+
+#### 74. Now measure importance the more trustworthy way: `permutation_importance` on the **test** set (`n_repeats=5, random_state=42, scoring="average_precision"`) for the same forest. Print the mean importances sorted. Do they agree with exercise 73? (★★☆)
+
+`hint:` `from sklearn.inspection import permutation_importance`; results are in `.importances_mean`
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.inspection import permutation_importance
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+forest = RandomForestClassifier(n_estimators=200, min_samples_leaf=30,
+                                class_weight="balanced", random_state=42).fit(X_train, y_train)
+
+# shuffle one column at a time and see how much the score drops.
+# Big drop = the model really relies on that feature.
+result = permutation_importance(forest, X_test, y_test, n_repeats=5, random_state=42,
+                                scoring="average_precision")
+print(pd.Series(result.importances_mean, index=X.columns).sort_values(ascending=False).round(4))
+# The order can differ from exercise 73. Permutation importance is measured on unseen
+# data with the metric you care about, so trust it more. Neither one proves cause.
+```
+
+#### 75. Another view of importance: in a logistic regression on **scaled** features, the size of each coefficient shows how strongly a feature pushes towards fraud. Fit the balanced logistic pipeline from exercise 65 and print its coefficients with names, sorted. Why must the features be scaled for this comparison to be fair? (★★☆)
+
+`hint:` `pipe[-1].coef_[0]` gets the coefficients of the last step
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+t = pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"])
+t["hour"] = t["timestamp"].dt.hour
+t["is_night"] = (t["hour"] <= 5).astype(int)
+t["is_foreign"] = (t["country"] != "NL").astype(int)
+t["is_online"] = (t["channel"] == "online").astype(int)
+X = t[["amount_eur", "hour", "is_night", "is_foreign", "is_online"]]
+y = t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")).fit(X_train, y_train)
+coefs = pd.Series(pipe[-1].coef_[0], index=X.columns)  # pipe[-1] = the last step (the model)
+print(coefs.sort_values(ascending=False).round(3))
+# Positive = pushes towards fraud, negative = away from it.
+# Without scaling, amount (0-1500) and a 0/1 flag would get coefficients on totally
+# different scales, and you could not compare their sizes.
+```
+
+
+## Level 3: Hard
+
+#### 76. Make 300 points in 3 groups with `make_blobs(n_samples=300, centers=3, random_state=42)`. Cluster them with `KMeans(n_clusters=3, random_state=42)`. Print the cluster centres and how many points ended up in each cluster. (★★★)
+
+`hint:` `from sklearn.cluster import KMeans`; `fit_predict(X)` returns a cluster number per row; no `y` is used
+
+```python
+import numpy as np
+from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+
+X, _ = make_blobs(n_samples=300, centers=3, random_state=42)  # we ignore the true groups
+km = KMeans(n_clusters=3, random_state=42)
+labels = km.fit_predict(X)  # unsupervised: only X, no answers
+print(km.cluster_centers_.round(2))
+print(np.bincount(labels))  # about 100 each
+# Cluster numbers 0/1/2 are just names; they carry no meaning or order.
+```
+
+#### 77. Group bank customers. Load `../data/customers.csv`, drop rows with `age == -1` (data-entry errors), and cluster on `age` and `credit_limit_eur` with a pipeline `make_pipeline(StandardScaler(), KMeans(n_clusters=3, random_state=42))`. Add the cluster as a column and print the mean age, mean credit limit and size of each cluster. (★★★)
+
+`hint:` `pipe.fit_predict(X)`; then `groupby("cluster").agg(...)`
+
+```python
+import pandas as pd
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+c = pd.read_csv("../data/customers.csv")
+c = c[c["age"] != -1].copy()
+X = c[["age", "credit_limit_eur"]]
+
+# KMeans uses distances, so scale first: otherwise euros (1000s) swamp age (10s)
+pipe = make_pipeline(StandardScaler(), KMeans(n_clusters=3, random_state=42))
+c["cluster"] = pipe.fit_predict(X)
+print(c.groupby("cluster").agg(mean_age=("age", "mean"),
+                               mean_limit=("credit_limit_eur", "mean"),
+                               size=("customer_id", "count")).round(1))
+# Describe each cluster in business words (e.g. "young, low limit") - that is the real output.
+```
+
+#### 78. How many clusters? For the scaled customer data of exercise 77, fit KMeans for k = 1 to 8 and print the `inertia_` for each. Where does the drop flatten out (the "elbow")? (★★★)
+
+`hint:` Scale once with `StandardScaler().fit_transform(X)`, then loop over k
+
+```python
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+c = pd.read_csv("../data/customers.csv")
+c = c[c["age"] != -1]
+Xs = StandardScaler().fit_transform(c[["age", "credit_limit_eur"]])
+
+for k in range(1, 9):
+    km = KMeans(n_clusters=k, random_state=42).fit(Xs)
+    print(k, round(km.inertia_, 1))
+# inertia = total squared distance from each point to its cluster centre (smaller = tighter).
+# It ALWAYS goes down with more clusters, so look for where the improvement gets small.
+```
+
+#### 79. Use the **silhouette score** to choose k for the same scaled customer data. Try k = 2 to 6, print each score, and print the best k. (★★★)
+
+`hint:` `from sklearn.metrics import silhouette_score`; `silhouette_score(Xs, labels)`; higher is better
+
+```python
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+c = pd.read_csv("../data/customers.csv")
+c = c[c["age"] != -1]
+Xs = StandardScaler().fit_transform(c[["age", "credit_limit_eur"]])
+
+scores = {}
+for k in range(2, 7):  # silhouette needs at least 2 clusters
+    labels = KMeans(n_clusters=k, random_state=42).fit_predict(Xs)
+    scores[k] = silhouette_score(Xs, labels)
+    print(k, round(scores[k], 3))
+print("best k:", max(scores, key=scores.get))
+# Silhouette (-1 to 1) asks: is each point closer to its own cluster than to the next one?
+# Here the scores for k=3..6 are very close, so k=3 (the elbow from exercise 78) is a fine,
+# easier-to-explain choice. Use the score as a guide; the business meaning matters too.
+```
+
+#### 80. Group swimmers by performance. From `../data/swim_results.csv`: keep `status == "OK"`, clean the event names with `.str.strip().str.title()`, and keep `"50 Free"` only. Per swimmer, compute the best time and the number of races. Cluster swimmers into 3 groups (scale first, `random_state=42`) and print each group's mean best time, mean races and size. (★★★)
+
+`hint:` `groupby("swimmer_id")["time_sec"].agg(best="min", races="count")`; then the same scale + KMeans pipeline as exercise 77
+
+```python
+import pandas as pd
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+r = pd.read_csv("../data/swim_results.csv")
+r = r[r["status"] == "OK"].copy()
+r["event"] = r["event"].str.strip().str.title()  # "50 free" -> "50 Free"
+free50 = r[r["event"] == "50 Free"]
+
+per_swimmer = free50.groupby("swimmer_id")["time_sec"].agg(best="min", races="count")
+pipe = make_pipeline(StandardScaler(), KMeans(n_clusters=3, random_state=42))
+per_swimmer["group"] = pipe.fit_predict(per_swimmer[["best", "races"]])
+print(per_swimmer.groupby("group").agg(mean_best=("best", "mean"),
+                                       mean_races=("races", "mean"),
+                                       size=("best", "size")).round(2))
+# Look at the sizes: one "group" may be a single unusual swimmer (a very slow time).
+# KMeans is pulled around by outliers, so check them (maybe remove them) before clustering.
+# A coach could use groups like this to plan training squads.
+```
+
+#### 81. Reduce iris from 4 features to 2 with `PCA(n_components=2)`. Print the new shape and `explained_variance_ratio_`. How much of the information do the 2 new columns keep? (★★★)
+
+`hint:` `from sklearn.decomposition import PCA`; scale first with a pipeline
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+X, y = load_iris(return_X_y=True)
+pipe = make_pipeline(StandardScaler(), PCA(n_components=2))
+X2 = pipe.fit_transform(X)
+print(X2.shape)  # (150, 2)
+ratio = pipe[-1].explained_variance_ratio_
+print(ratio.round(3), round(ratio.sum(), 3))
+# PCA builds new columns that are mixes of the old ones, ordered by how much of the
+# spread in the data they capture. Two columns keep about 96% of it here.
+```
+
+#### 82. Make a 2-D scatter plot of iris after PCA (exercise 81), coloured by species. Add axis labels and save it to `outputs/iris_pca.png`. (★★★)
+
+`hint:` `plt.scatter(X2[:, 0], X2[:, 1], c=y)`
+
+```python
+import os
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+X, y = load_iris(return_X_y=True)
+X2 = make_pipeline(StandardScaler(), PCA(n_components=2)).fit_transform(X)
+
+plt.scatter(X2[:, 0], X2[:, 1], c=y)  # colour = true species, only for checking
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.title("Iris in 2-D after PCA")
+os.makedirs("outputs", exist_ok=True)
+plt.savefig("outputs/iris_pca.png")
+plt.show()
+print("saved outputs/iris_pca.png")
+# You cannot draw 4 dimensions; PCA lets you see whether the classes separate.
+```
+
+#### 83. Breast cancer has 30 features. How many PCA components do you need to keep 95% of the variance? Use `PCA(n_components=0.95)` after scaling and print the number of components. Then try without scaling and explain the difference. (★★★)
+
+`hint:` A number between 0 and 1 for `n_components` means "keep this share of variance"; the result is in `.n_components_`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+
+X, y = load_breast_cancer(return_X_y=True)
+scaled = make_pipeline(StandardScaler(), PCA(n_components=0.95)).fit(X)
+print("scaled:  ", scaled[-1].n_components_)    # about 10
+raw = PCA(n_components=0.95).fit(X)
+print("unscaled:", raw.n_components_)           # 1!
+# Without scaling, "area" (values up to ~2500) has by far the biggest spread, so PCA
+# thinks one column holds almost all the information. Scale before PCA.
+```
+
+#### 84. **Fraud project, step 1: features.** Write a function `make_features(t)` that takes the raw transactions DataFrame and returns a copy with: `hour`, `is_night` (hour 0–5), `is_foreign` (country not NL), `month`, and `merchant_category` with missing values filled as `"missing"`. Apply it, then print the fraud rate grouped by `is_night` and by `is_foreign`. (★★★)
+
+`hint:` Parse dates with `parse_dates=["timestamp"]`; use `.dt.hour` and `.dt.month`; return `t.assign(...)` or work on `t.copy()`
+
+```python
+import pandas as pd
+
+def make_features(t):
+    t = t.copy()  # never change the caller's DataFrame by surprise
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+print(t.groupby("is_night")["is_fraud"].mean().round(4))
+print(t.groupby("is_foreign")["is_fraud"].mean().round(4))
+# Check that a feature really separates fraud before giving it to a model.
+```
+
+#### 85. **Step 2: time-based split.** Using `make_features` from exercise 84, put January and February in `train` and March in `test`. Print the number of rows and frauds in each. In a comment, explain why this is more honest than a random split for fraud. (★★★)
+
+`hint:` `train = t[t["month"] <= 2]`, `test = t[t["month"] == 3]`
+
+```python
+import pandas as pd
+
+def make_features(t):
+    t = t.copy()
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+train = t[t["month"] <= 2]
+test = t[t["month"] == 3]
+print("train:", len(train), "rows,", train["is_fraud"].sum(), "frauds")
+print("test: ", len(test), "rows,", test["is_fraud"].sum(), "frauds")
+# A bank trains on the past and uses the model on the future. A random split lets
+# the model learn from March to predict January (mixing past and future), and
+# fraud patterns change over time. Test the way you will use it: train on earlier,
+# test on later.
+```
+
+#### 86. **Step 3: pipeline.** Build a `ColumnTransformer` that scales `amount_eur` and `hour`, passes through `is_night` and `is_foreign`, and one-hot encodes `channel`, `merchant_category` and `country`. Put it in a pipeline with `LogisticRegression(class_weight="balanced", max_iter=1000)`. Train on Jan–Feb, and on March print the average precision, the ROC AUC and the fraud rate. (★★★)
+
+`hint:` Use `"passthrough"` as the transformer for columns that are already ready
+
+```python
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score, roc_auc_score
+
+def make_features(t):
+    t = t.copy()
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+train, test = t[t["month"] <= 2], t[t["month"] == 3]
+num, flags, cats = ["amount_eur", "hour"], ["is_night", "is_foreign"], ["channel", "merchant_category", "country"]
+
+ct = ColumnTransformer([
+    ("num", StandardScaler(), num),
+    ("flags", "passthrough", flags),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), cats),
+])
+pipe = make_pipeline(ct, LogisticRegression(class_weight="balanced", max_iter=1000))
+pipe.fit(train[num + flags + cats], train["is_fraud"])
+
+proba = pipe.predict_proba(test[num + flags + cats])[:, 1]
+print("average precision:", round(average_precision_score(test["is_fraud"], proba), 3))
+print("ROC AUC:          ", round(roc_auc_score(test["is_fraud"], proba), 3))
+print("fraud rate:       ", round(test["is_fraud"].mean(), 3))
+```
+
+#### 87. Compare the time split with a random split of the **same size** (`test_size=len(test)`, `stratify`, `random_state=42`) for the pipeline from exercise 86. Print the average precision for both. Which is more optimistic, and why should you report the time-split number? (★★★)
+
+`hint:` `train_test_split(t, test_size=len(test), stratify=t["is_fraud"], random_state=42)` splits whole rows of the DataFrame
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score
+
+def make_features(t):
+    t = t.copy()
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+cols = ["amount_eur", "hour", "is_night", "is_foreign", "channel", "merchant_category", "country"]
+ct = ColumnTransformer([
+    ("num", StandardScaler(), ["amount_eur", "hour"]),
+    ("flags", "passthrough", ["is_night", "is_foreign"]),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), ["channel", "merchant_category", "country"]),
+])
+pipe = make_pipeline(ct, LogisticRegression(class_weight="balanced", max_iter=1000))
+
+def ap(train, test):
+    pipe.fit(train[cols], train["is_fraud"])
+    return average_precision_score(test["is_fraud"], pipe.predict_proba(test[cols])[:, 1])
+
+time_train, time_test = t[t["month"] <= 2], t[t["month"] == 3]
+rand_train, rand_test = train_test_split(t, test_size=len(time_test), stratify=t["is_fraud"], random_state=42)
+print("time split:  ", round(ap(time_train, time_test), 3))
+print("random split:", round(ap(rand_train, rand_test), 3))
+# Here the random split scores higher. With only ~40 test frauds part of the gap is
+# luck, but the direction is typical: a random split mixes future rows into training,
+# so it hides the fact that the world changes. The time split mimics real use,
+# so it is the number to report to your manager.
+```
+
+#### 88. Swap the logistic regression in the exercise 86 pipeline for `RandomForestClassifier(n_estimators=200, min_samples_leaf=20, class_weight="balanced", random_state=42)`. On the time split, print average precision for both models. Which would you pick? (★★★)
+
+`hint:` Keep the same `ColumnTransformer`; scaling does not hurt the forest. Loop over a dict of models
+
+```python
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import average_precision_score
+
+def make_features(t):
+    t = t.copy()
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+train, test = t[t["month"] <= 2], t[t["month"] == 3]
+cols = ["amount_eur", "hour", "is_night", "is_foreign", "channel", "merchant_category", "country"]
+
+def preprocess():
+    return ColumnTransformer([
+        ("num", StandardScaler(), ["amount_eur", "hour"]),
+        ("flags", "passthrough", ["is_night", "is_foreign"]),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), ["channel", "merchant_category", "country"]),
+    ])
+
+models = {
+    "logistic": LogisticRegression(class_weight="balanced", max_iter=1000),
+    "forest": RandomForestClassifier(n_estimators=200, min_samples_leaf=20,
+                                     class_weight="balanced", random_state=42),
+}
+for name, model in models.items():
+    pipe = make_pipeline(preprocess(), model).fit(train[cols], train["is_fraud"])
+    proba = pipe.predict_proba(test[cols])[:, 1]
+    print(name, round(average_precision_score(test["is_fraud"], proba), 3))
+# Pick the one with higher average precision; if they are close, pick the simpler,
+# easier-to-explain model (banks must explain decisions to regulators).
+```
+
+#### 89. **Step 4: threshold for a business goal.** The bank wants to catch at least 80% of fraud. Choosing the threshold on the March test set would be cheating, so: train on **January**, choose the threshold on **February** (the validation set), then use that same model and threshold on **March** (the test set). Print the threshold, and March's recall, precision, number of alerts and share of transactions flagged. (★★★)
+
+`hint:` Three time periods: train (Jan), validation (Feb), test (Mar). Use `precision_recall_curve` on February like exercise 69
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import precision_recall_curve, precision_score, recall_score
+
+def make_features(t):
+    t = t.copy()
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+jan, feb, mar = (t[t["month"] == m] for m in (1, 2, 3))
+cols = ["amount_eur", "hour", "is_night", "is_foreign", "channel", "merchant_category", "country"]
+ct = ColumnTransformer([
+    ("num", StandardScaler(), ["amount_eur", "hour"]),
+    ("flags", "passthrough", ["is_night", "is_foreign"]),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), ["channel", "merchant_category", "country"]),
+])
+pipe = make_pipeline(ct, LogisticRegression(class_weight="balanced", max_iter=1000))
+
+# 1) choose the threshold on February, with a model that has only seen January
+pipe.fit(jan[cols], jan["is_fraud"])
+precision, recall, thresholds = precision_recall_curve(feb["is_fraud"], pipe.predict_proba(feb[cols])[:, 1])
+thr = thresholds[np.where(recall[:-1] >= 0.8)[0][-1]]
+print("threshold:", round(thr, 3))
+
+# 2) use the SAME model and threshold on the untouched March data.
+# (If you retrain the model, its probabilities shift, so you must choose the threshold again.)
+y_pred = (pipe.predict_proba(mar[cols])[:, 1] >= thr).astype(int)
+print("March recall:   ", round(recall_score(mar["is_fraud"], y_pred), 3))
+print("March precision:", round(precision_score(mar["is_fraud"], y_pred), 3))
+print("March alerts:   ", y_pred.sum(), "of", len(mar), f"({y_pred.mean():.0%} flagged)")
+# The goal is met on recall, but more than half of all transactions get flagged:
+# no bank can check that many. This is the honest answer to give the business:
+# "with these features, 80% is too expensive; we need better features (e.g. customer
+# history) or a lower target". Finding that out is part of the job.
+```
+
+#### 90. Make the threshold choice about money. Assume each missed fraud costs the bank its `amount_eur`, and each alert costs €5 for an analyst to check. On February (model trained on January, as in exercise 89), compute the total cost for thresholds `0.3, 0.4, ..., 0.9` and print the cheapest. (★★★)
+
+`hint:` cost = (amounts of frauds with prediction 0).sum() + 5 * number of alerts. `np.arange(0.3, 0.91, 0.1)`
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+
+def make_features(t):
+    t = t.copy()
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+jan, feb = t[t["month"] == 1], t[t["month"] == 2]
+cols = ["amount_eur", "hour", "is_night", "is_foreign", "channel", "merchant_category", "country"]
+ct = ColumnTransformer([
+    ("num", StandardScaler(), ["amount_eur", "hour"]),
+    ("flags", "passthrough", ["is_night", "is_foreign"]),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), ["channel", "merchant_category", "country"]),
+])
+pipe = make_pipeline(ct, LogisticRegression(class_weight="balanced", max_iter=1000))
+pipe.fit(jan[cols], jan["is_fraud"])
+proba = pipe.predict_proba(feb[cols])[:, 1]
+
+costs = {}
+for thr in np.arange(0.3, 0.91, 0.1):
+    alert = proba >= thr
+    missed = (feb["is_fraud"] == 1) & ~alert
+    costs[round(thr, 1)] = feb.loc[missed, "amount_eur"].sum() + 5 * alert.sum()
+    print(round(thr, 1), "alerts:", alert.sum(), "cost: EUR", round(costs[round(thr, 1)]))
+print("cheapest threshold:", min(costs, key=costs.get))
+# "Best model" depends on the business. Turning errors into euros makes the trade-off clear.
+```
+
+#### 91. **Step 5: save and reuse.** Train the exercise 86 pipeline on Jan–Feb and save it together with a threshold of 0.6 to `outputs/fraud_model.joblib` as a dict. Then load it back and score these two new transactions, printing the probability and an alert flag: (★★★)
+```python
+new = pd.DataFrame({
+    "timestamp": pd.to_datetime(["2025-04-01 03:12:00", "2025-04-01 12:30:00"]),
+    "merchant_category": ["electronics", "groceries"], "channel": ["online", "in_store"],
+    "country": ["RU", "NL"], "amount_eur": [899.0, 23.5]})
+```
+
+`hint:` `import joblib`; `joblib.dump(obj, path)` and `joblib.load(path)`; run `make_features` on the new rows too
+
+```python
+import os
+import joblib
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+
+def make_features(t):
+    t = t.copy()
+    t["hour"] = t["timestamp"].dt.hour
+    t["is_night"] = (t["hour"] <= 5).astype(int)
+    t["is_foreign"] = (t["country"] != "NL").astype(int)
+    t["month"] = t["timestamp"].dt.month
+    t["merchant_category"] = t["merchant_category"].fillna("missing")
+    return t
+
+t = make_features(pd.read_csv("../data/transactions.csv", parse_dates=["timestamp"]))
+train = t[t["month"] <= 2]
+cols = ["amount_eur", "hour", "is_night", "is_foreign", "channel", "merchant_category", "country"]
+ct = ColumnTransformer([
+    ("num", StandardScaler(), ["amount_eur", "hour"]),
+    ("flags", "passthrough", ["is_night", "is_foreign"]),
+    ("cat", OneHotEncoder(handle_unknown="ignore"), ["channel", "merchant_category", "country"]),
+])
+pipe = make_pipeline(ct, LogisticRegression(class_weight="balanced", max_iter=1000))
+pipe.fit(train[cols], train["is_fraud"])
+
+os.makedirs("outputs", exist_ok=True)
+# save the threshold WITH the model, so nobody uses the wrong cut-off later
+joblib.dump({"model": pipe, "threshold": 0.6, "columns": cols}, "outputs/fraud_model.joblib")
+
+saved = joblib.load("outputs/fraud_model.joblib")  # e.g. tomorrow, in another program
+new = pd.DataFrame({
+    "timestamp": pd.to_datetime(["2025-04-01 03:12:00", "2025-04-01 12:30:00"]),
+    "merchant_category": ["electronics", "groceries"], "channel": ["online", "in_store"],
+    "country": ["RU", "NL"], "amount_eur": [899.0, 23.5]})
+new = make_features(new)  # same feature code as in training
+proba = saved["model"].predict_proba(new[saved["columns"]])[:, 1]
+print(proba.round(3))
+print("alert:", proba >= saved["threshold"])
+```
+
+#### 92. **Spot the bug.** A colleague wrote this. What is wrong, why does it matter, and how do you fix it? Write the fixed version. (★★★)
+```python
+X, y = load_breast_cancer(return_X_y=True)
+X = StandardScaler().fit_transform(X)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+model = LogisticRegression().fit(X_train, y_train)
+print(model.score(X_test, y_test))
+```
+
+`hint:` Which rows did the scaler learn its mean and standard deviation from?
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import make_pipeline
+
+# BUG: the scaler was fitted on ALL rows before splitting, so the mean/std include the
+# test rows. Information from the test set leaked into training. With a scaler the
+# effect is usually small, but with imputers, encoders or feature selection it can be
+# big (see exercise 64), and it is the kind of mistake interviewers look for.
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+# FIX: split first, and let a pipeline fit the scaler on the training rows only
+pipe = make_pipeline(StandardScaler(), LogisticRegression()).fit(X_train, y_train)
+print(pipe.score(X_test, y_test))
+```
+
+#### 93. **Spot the bug.** What is wrong with this way of choosing `k`, and what does the final printed number really mean? Write a fixed version. (★★★)
+```python
+best_k, best = None, 0
+for k in range(1, 31):
+    pipe = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=k)).fit(X_train, y_train)
+    s = pipe.score(X_test, y_test)
+    if s > best:
+        best_k, best = k, s
+print("k =", best_k, "test accuracy =", best)
+```
+(Data: breast cancer, `test_size=0.25, stratify=y, random_state=42`.)
+
+`hint:` If you pick the best of 30 scores on the test set, is that score still a fair guess for new data?
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+
+# BUG: the test set was used 30 times to make a choice. The winning score is the luckiest
+# of 30 tries, so it overstates how well the model will do on truly new data.
+# The test set has become a training tool.
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+# FIX: choose k with cross-validation on the training set only, then test ONCE.
+pipe = make_pipeline(StandardScaler(), KNeighborsClassifier())
+search = GridSearchCV(pipe, {"kneighborsclassifier__n_neighbors": list(range(1, 31))}, cv=5)
+search.fit(X_train, y_train)
+print("k =", search.best_params_["kneighborsclassifier__n_neighbors"])
+print("honest test accuracy =", round(search.score(X_test, y_test), 3))
+```
+
+#### 94. **Why is this result too good to be true?** The bank's data team added a column `chargeback_filed` (did the customer later dispute the payment?). A model using it scores almost perfectly. Run it, explain the problem, and show the honest score without it. (★★★)
+```python
+rng = np.random.default_rng(42)
+t = pd.read_csv("../data/transactions.csv")
+t["is_online"] = (t["channel"] == "online").astype(int)
+# a dispute is filed weeks AFTER the payment, for almost every fraud
+t["chargeback_filed"] = np.where(t["is_fraud"] == 1, rng.random(len(t)) < 0.95, rng.random(len(t)) < 0.003).astype(int)
+X = t[["amount_eur", "is_online", "chargeback_filed"]]
+```
+
+`hint:` Would you know this column's value at the moment the card is swiped?
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score
+
+rng = np.random.default_rng(42)
+t = pd.read_csv("../data/transactions.csv")
+t["is_online"] = (t["channel"] == "online").astype(int)
+t["chargeback_filed"] = np.where(t["is_fraud"] == 1, rng.random(len(t)) < 0.95, rng.random(len(t)) < 0.003).astype(int)
+y = t["is_fraud"]
+
+for cols in [["amount_eur", "is_online", "chargeback_filed"], ["amount_eur", "is_online"]]:
+    X_train, X_test, y_train, y_test = train_test_split(t[cols], y, test_size=0.25, stratify=y, random_state=42)
+    pipe = make_pipeline(StandardScaler(), LogisticRegression(class_weight="balanced")).fit(X_train, y_train)
+    print(cols, round(average_precision_score(y_test, pipe.predict_proba(X_test)[:, 1]), 3))
+# TARGET LEAKAGE: chargeback_filed only exists weeks after the payment, and it is
+# basically the answer. At swipe time it is unknown, so the model would fail in real use.
+# Rule: for every feature ask "would I know this at the moment of prediction?"
+```
+
+#### 95. **Why is this misleading?** A colleague evaluates on a small sample: the first 500 transactions, split 80/20 **without** `stratify`. Show how many frauds land in the test set for `random_state` 0 to 4, and what fraud recall is when the test set has no frauds at all. Then fix it. (★★★)
+
+`hint:` `y_test.sum()` for each seed; `recall_score(..., zero_division=0)` when there are no frauds
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+t = pd.read_csv("../data/transactions.csv").head(500)
+X, y = t[["amount_eur"]], t["is_fraud"]
+print("frauds in sample:", y.sum())
+
+for seed in range(5):
+    _, _, _, y_test = train_test_split(X, y, test_size=0.2, random_state=seed)
+    print("no stratify, seed", seed, "-> frauds in test:", y_test.sum())
+# With so few frauds, a plain random split can leave 0-3 in the test set. With 0,
+# recall is undefined (0/0) and any precision/recall you report is meaningless; with
+# 1-2 frauds one lucky guess swings recall from 0% to 100%.
+
+for seed in range(5):
+    _, _, _, y_test = train_test_split(X, y, test_size=0.2, random_state=seed, stratify=y)
+    print("stratify,    seed", seed, "-> frauds in test:", y_test.sum())
+# FIX: stratify=y keeps the fraud share the same. Better still: use more data and
+# cross-validation (StratifiedKFold) rather than one tiny test set.
+```
+
+#### 96. **Unfair comparison.** A colleague says "the forest beats logistic regression": they trained logistic regression (with scaling) on a split with `random_state=0` and the forest on a split with `random_state=10` (breast cancer, `test_size=0.25`). Show the two numbers, explain the problem, then compare both models fairly with `cross_val_score` on the **same** `StratifiedKFold(5, shuffle=True, random_state=42)`. (★★★)
+
+`hint:` Create one `cv` object and pass it to both `cross_val_score` calls
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+logreg = make_pipeline(StandardScaler(), LogisticRegression())
+forest = RandomForestClassifier(random_state=42)
+
+# the colleague's way: each model gets a different test set
+a = train_test_split(X, y, test_size=0.25, random_state=0)
+b = train_test_split(X, y, test_size=0.25, random_state=10)
+print("logreg (split 0): ", round(logreg.fit(a[0], a[2]).score(a[1], a[3]), 3))
+print("forest (split 10):", round(forest.fit(b[0], b[2]).score(b[1], b[3]), 3))
+# PROBLEM: some test sets are easier than others (exercise 58), so the gap may just be
+# the difference between the splits, not between the models.
+# With the same folds the ranking flips: logistic regression is actually slightly better.
+
+# FIX: same folds for both, and look at the mean AND the spread
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+for name, model in [("logreg", logreg), ("forest", forest)]:
+    s = cross_val_score(model, X, y, cv=cv)
+    print(f"{name}: {s.mean():.3f} +/- {s.std():.3f}")
+```
+
+#### 97. Turn your feature code into a pipeline step with `FunctionTransformer`, so the pipeline accepts the **raw** transactions (timestamp as text). Write `add_time_features(df)` that parses `timestamp` and adds `hour` and `is_night`, then use `make_pipeline(FunctionTransformer(add_time_features), ColumnTransformer(...), LogisticRegression(...))`. Train on a stratified 75/25 split of the raw file and print the average precision. (★★★)
+
+`hint:` `from sklearn.preprocessing import FunctionTransformer`; the function receives a DataFrame and must return one
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import FunctionTransformer, StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score
+
+def add_time_features(df):
+    df = df.copy()
+    ts = pd.to_datetime(df["timestamp"])
+    df["hour"] = ts.dt.hour
+    df["is_night"] = (df["hour"] <= 5).astype(int)
+    return df
+
+t = pd.read_csv("../data/transactions.csv")  # raw: timestamp is still text
+X, y = t.drop(columns=["is_fraud"]), t["is_fraud"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+
+pipe = make_pipeline(
+    FunctionTransformer(add_time_features),  # your own pandas code as a pipeline step
+    ColumnTransformer([
+        ("num", StandardScaler(), ["amount_eur", "hour"]),
+        ("flags", "passthrough", ["is_night"]),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), ["channel", "country"]),
+    ]),
+    LogisticRegression(class_weight="balanced", max_iter=1000),
+)
+pipe.fit(X_train, y_train)
+print(round(average_precision_score(y_test, pipe.predict_proba(X_test)[:, 1]), 3))
+# Now the saved model can take raw rows straight from the database: no risk of
+# forgetting a feature step when the model is used.
+```
+
+#### 98. Draw a **learning curve**: does more data help? Use `learning_curve` on breast cancer with `make_pipeline(StandardScaler(), LogisticRegression())`, `train_sizes=[0.1, 0.25, 0.5, 0.75, 1.0]`, `cv=5`. Print the number of training rows and the mean train and validation score for each size. (★★★)
+
+`hint:` `from sklearn.model_selection import learning_curve`; it returns `sizes, train_scores, val_scores`; average each row with `.mean(axis=1)`
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import learning_curve
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+X, y = load_breast_cancer(return_X_y=True)
+pipe = make_pipeline(StandardScaler(), LogisticRegression())
+sizes, train_scores, val_scores = learning_curve(
+    pipe, X, y, train_sizes=[0.1, 0.25, 0.5, 0.75, 1.0], cv=5)
+
+for n, tr, va in zip(sizes, train_scores.mean(axis=1), val_scores.mean(axis=1)):
+    print(f"{n:4d} rows  train {tr:.3f}  validation {va:.3f}")
+# Validation score rises with more rows and then levels off. If the two lines have
+# met and flattened, more data will not help much; if there is still a gap and the
+# validation line is rising, collecting more data probably will.
+```
+
+#### 99. **Mini project, part 1.** Predict `final_marks` from all useful columns of student marks (`study_hours_per_week`, `attendance_pct`, `sleep_hours`, `previous_cgpa`, `part_time_job`, `favourite_subject`). Hold out 20% as a test set (`random_state=42`). On the training set only, compare `LinearRegression` and `RandomForestRegressor(n_estimators=200, min_samples_leaf=5, random_state=42)` with 5-fold cross-validated MAE, using the same preprocessing pipeline for both. Print the mean CV MAE of each. (★★★)
+
+`hint:` `scoring="neg_mean_absolute_error"` (sklearn wants "higher is better", so it gives MAE with a minus sign; flip it back)
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+
+df = pd.read_csv("../data/student_marks.csv")
+num = ["study_hours_per_week", "attendance_pct", "sleep_hours", "previous_cgpa"]
+X = df[num + ["part_time_job", "favourite_subject"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+def preprocess():
+    return ColumnTransformer([
+        ("num", make_pipeline(SimpleImputer(strategy="median"), StandardScaler()), num),
+        ("job", "passthrough", ["part_time_job"]),
+        ("subj", OneHotEncoder(handle_unknown="ignore"), ["favourite_subject"]),
+    ])
+
+models = {
+    "linear": LinearRegression(),
+    "forest": RandomForestRegressor(n_estimators=200, min_samples_leaf=5, random_state=42),
+}
+for name, model in models.items():
+    scores = cross_val_score(make_pipeline(preprocess(), model), X_train, y_train,
+                             cv=5, scoring="neg_mean_absolute_error")
+    print(f"{name}: CV MAE = {-scores.mean():.2f}")
+# The test set is still untouched: we choose the model using CV on training data only.
+```
+
+#### 100. **Mini project, part 2.** Take the model with the lower CV MAE from exercise 99, fit it on the full training set, and report its test MAE **once**. Then print the 5 test students with the biggest errors (true mark, predicted mark, error). Look at their true marks: what pattern do you notice, and what does it say about the data? (★★★)
+
+`hint:` Put `y_test`, the predictions and `abs(error)` in a DataFrame and use `.nlargest(5, "abs_error")`. How many students have exactly 100?
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
+
+df = pd.read_csv("../data/student_marks.csv")
+num = ["study_hours_per_week", "attendance_pct", "sleep_hours", "previous_cgpa"]
+X = df[num + ["part_time_job", "favourite_subject"]]
+y = df["final_marks"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+def preprocess():
+    return ColumnTransformer([
+        ("num", make_pipeline(SimpleImputer(strategy="median"), StandardScaler()), num),
+        ("job", "passthrough", ["part_time_job"]),
+        ("subj", OneHotEncoder(handle_unknown="ignore"), ["favourite_subject"]),
+    ])
+
+models = {
+    "linear": LinearRegression(),
+    "forest": RandomForestRegressor(n_estimators=200, min_samples_leaf=5, random_state=42),
+}
+cv_mae = {name: -cross_val_score(make_pipeline(preprocess(), m), X_train, y_train, cv=5,
+                                 scoring="neg_mean_absolute_error").mean()
+          for name, m in models.items()}
+best = min(cv_mae, key=cv_mae.get)
+pipe = make_pipeline(preprocess(), models[best]).fit(X_train, y_train)
+y_pred = pipe.predict(X_test)
+print("chosen:", best, "| test MAE:", round(mean_absolute_error(y_test, y_pred), 2))
+
+res = pd.DataFrame({"true": y_test, "pred": y_pred.round(1)})
+res["abs_error"] = (res["true"] - res["pred"]).abs()
+print(res.nlargest(5, "abs_error"))
+print("students with exactly 100:", (df["final_marks"] == 100).sum(), "of", len(df))
+# Most big errors are strong students the model under-predicts. About a quarter of all
+# marks are exactly 100: the marks are capped, so a student who "would" score 110 is
+# recorded as 100. The data hides how good the top students really are, and no model can
+# learn what is not in the data. Always look at your biggest errors: they often reveal
+# data issues, not just model issues.
+```
